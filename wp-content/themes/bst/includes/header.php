@@ -6,6 +6,18 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<?php wp_head(); ?>
+
+    <style>
+        /*.list-group-item {*/
+            /*position: relative;*/
+            /*display: block;*/
+            /*padding: 5px 10px;*/
+            /*margin-bottom: -1px;*/
+            /*background-color: #fff;*/
+            /*border: 1px solid #ddd;*/
+        /*}*/
+    </style>
+
 </head>
 
 <body <?php body_class(); ?>>

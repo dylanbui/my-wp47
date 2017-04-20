@@ -11,6 +11,11 @@ require_once locate_template('/functions/widgets.php');
 require_once locate_template('/functions/search.php');
 require_once locate_template('/functions/feedback.php');
 
+require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+require_once(ABSPATH . "wp-admin" . '/includes/file.php');
+require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+
+
 add_action('after_setup_theme', 'true_load_theme_textdomain');
 
 function true_load_theme_textdomain(){
@@ -78,6 +83,14 @@ if( ! ( function_exists( 'db_get_attachment_by_url' ) ) ) {
     }
 }
 
+if( ! ( function_exists( 'db_redirect' ) ) ) {
+    function db_redirect($location, $status = 302) {
+        // Note: wp_redirect() does not exit automatically, and should almost always be followed by a call to exit
+        wp_redirect($location, $status);
+        exit();
+    }
+}
+
 // Add Facebook meta to post or page detail
 //Lets add Open Graph Meta Info
 function insert_fb_in_head()
@@ -104,3 +117,132 @@ function insert_fb_in_head()
 }
 add_action( 'wp_head', 'insert_fb_in_head', 5 );
 
+// Register post form
+function register_submit_form()
+{
+    if (isset($_POST['submit_action']) && wp_verify_nonce( $_POST['submit_action_key'], $_POST['submit_action']))
+    {
+        $str_func = "dbf_form_" .$_POST['submit_action'];
+
+        if(function_exists($str_func))
+        {
+            // Run define function
+            return $str_func();
+        }
+
+    }
+}
+add_action('init', 'register_submit_form');
+/*
+<form class="royal_page" role="form" method="post">
+    <input type="hidden" name="submit_action" value="resgiter_user" />
+    <?php wp_nonce_field('resgiter_user', 'submit_action_key'); ?>
+    <input type="submit" id="submit" value="Update" />
+</form>
+
+// Process function name
+function dbf_form_resgiter_user()
+{
+    echo "Day la xu ly form dang ky";
+}
+ * */
+
+
+function dbf_form_answer()
+{
+    echo "<pre>";
+    print_r($_POST);
+    echo "</pre>";
+
+    //store our post vars into variables for later use
+    //now would be a good time to run some basic error checking/validation
+    //to ensure that data for these values have been set
+    $title     = $_POST['title'];
+    $cau_hoi   = $_POST['cau-hoi'];
+    $post_type = 'question';
+
+    //the array of arguements to be inserted with wp_insert_post
+    $new_post = array(
+        'post_title'    => $title,
+        //'post_status'   => 'publish',
+        'post_status'   => 'pending',
+        'post_type'     => $post_type
+    );
+
+    //insert the the post into database by passing $new_post to wp_insert_post
+    //store our post ID in a variable $pid
+    //we now use $pid (post id) to help add out post meta data
+    $pid = wp_insert_post($new_post);
+
+    //we now use $pid (post id) to help add out post meta data
+    add_post_meta($pid, 'wpcf-cau-hoi', $cau_hoi);
+
+//    if (!function_exists('wp_generate_attachment_metadata')){
+//        require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+//        require_once(ABSPATH . "wp-admin" . '/includes/file.php');
+//        require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+//    }
+
+//    add_post_meta($pid, 'wpcf-cau-hoi', $cau_hoi);
+    $upload = $_FILES['hinh-dai-dien']; /*Receive the uploaded image from form*/
+
+    echo "<pre>";
+    print_r($_FILES);
+    echo "</pre>";
+
+    if (!empty($upload)) {
+        $meta_data = add_custom_image($upload); /*Call image uploader function*/
+        echo "<pre>";
+        print_r($meta_data);
+        echo "</pre>";
+    }
+
+    echo get_permalink($pid).'<br>';
+    die('DONE : '. $pid);
+}
+
+
+function add_custom_image($upload)
+{
+    $uploads = wp_upload_dir(); /*Get path of upload dir of wordpress*/
+
+    if (is_writable($uploads['path']))  /*Check if upload dir is writable*/
+    {
+        if ((!empty($upload['tmp_name'])))  /*Check if uploaded image is not empty*/
+        {
+            if ($upload['tmp_name'])   /*Check if image has been uploaded in temp directory*/
+            {
+                $file = wp_handle_upload($upload); /*Call our custom function to ACTUALLY upload the image*/
+//                media_handle_upload()
+
+                $attachment = array  /*Create attachment for our post*/
+                (
+                    'post_mime_type' => $file['type']  /*Type of attachment*/
+                );
+
+                $aid = wp_insert_attachment($attachment, $file['file']);  /*Insert post attachment and return the attachment id*/
+                return wp_generate_attachment_metadata($aid, $file['file'] );  /*Generate metadata for new attacment*/
+//                $a = wp_generate_attachment_metadata($aid, $file['file'] );  /*Generate metadata for new attacment*/
+//                $prev_img = get_post_meta($post_id, 'custom_image');  /*Get previously uploaded image*/
+//                if(is_array($prev_img))
+//                {
+//                    if($prev_img[0] != '')  /*If image exists*/
+//                    {
+//                        wp_delete_attachment($prev_img[0]);  /*Delete previous image*/
+//                    }
+//                }
+//                update_post_meta($post_id, 'custom_image', $aid);  /*Save the attachment id in meta data*/
+
+//                if ( !is_wp_error($aid) )
+//                {
+//                    /*If there is no error, update the metadata of the newly uploaded image*/
+//                    wp_update_attachment_metadata($aid, wp_generate_attachment_metadata($aid, $file['file'] ) );
+//                }
+            }
+        }
+        else
+        {
+            echo 'Please upload the image.';
+        }
+    }
+}

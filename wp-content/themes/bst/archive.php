@@ -9,7 +9,9 @@
 
     <div class="col-xs-12 col-sm-8">
       <div id="content" role="main">
-				<?php get_template_part('includes/loops/content', get_post_format()); ?>
+          <h1>Arichive: <?php echo single_cat_title(); ?></h1>
+          <hr>
+				<?php //get_template_part('includes/loops/content', get_post_format()); ?>
       </div><!-- /#content -->
     </div>
 
