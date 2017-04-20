@@ -161,6 +161,18 @@ function dbf_form_answer()
     $cau_hoi   = $_POST['cau-hoi'];
     $post_type = 'question';
 
+    // -- Process upload --
+    $upload = $_FILES['hinh-dai-dien']; /*Receive the uploaded image from form*/
+
+    $uploadFileFullUrl = '';
+    if (!empty($upload)) {
+        $metaData = db_upload_user_file($upload); /*Call image uploader function*/
+        $uploadFileFullUrl = $metaData['full_file_url'];
+        echo "<pre>";
+        print_r($metaData);
+        echo "</pre>";
+    }
+
     //the array of arguements to be inserted with wp_insert_post
     $new_post = array(
         'post_title'    => $title,
@@ -177,6 +189,9 @@ function dbf_form_answer()
     //we now use $pid (post id) to help add out post meta data
     add_post_meta($pid, 'wpcf-cau-hoi', $cau_hoi);
 
+    // -- Upload file field --
+    add_post_meta($pid, 'wpcf-hinh-dai-dien', $uploadFileFullUrl);
+
 //    if (!function_exists('wp_generate_attachment_metadata')){
 //        require_once(ABSPATH . "wp-admin" . '/includes/image.php');
 //        require_once(ABSPATH . "wp-admin" . '/includes/file.php');
@@ -184,65 +199,55 @@ function dbf_form_answer()
 //    }
 
 //    add_post_meta($pid, 'wpcf-cau-hoi', $cau_hoi);
-    $upload = $_FILES['hinh-dai-dien']; /*Receive the uploaded image from form*/
+//    $upload = $_FILES['hinh-dai-dien']; /*Receive the uploaded image from form*/
 
-    echo "<pre>";
-    print_r($_FILES);
-    echo "</pre>";
+//    echo "<pre>";
+//    print_r($_FILES);
+//    echo "</pre>";
 
-    if (!empty($upload)) {
-        $meta_data = add_custom_image($upload); /*Call image uploader function*/
-        echo "<pre>";
-        print_r($meta_data);
-        echo "</pre>";
-    }
+//    if (!empty($upload)) {
+//        $meta_data = upload_user_file($upload); /*Call image uploader function*/
+//        echo "<pre>";
+//        print_r($meta_data);
+//        echo "</pre>";
+//    }
 
     echo get_permalink($pid).'<br>';
     die('DONE : '. $pid);
 }
 
 
-function add_custom_image($upload)
+function db_upload_user_file($file = array())
 {
-    $uploads = wp_upload_dir(); /*Get path of upload dir of wordpress*/
+    require_once( ABSPATH . 'wp-admin/includes/admin.php' );
+    $file_return = wp_handle_upload($file, array('test_form' => false));
+    if( isset( $file_return['error'] ) || isset( $file_return['upload_error_handler'] ) ) {
+        return false;
+    } else {
+        $filename = $file_return['file'];
+        $attachment = array(
+            'post_mime_type' => $file_return['type'],
+            'post_title' => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
+            'post_content' => '',
+            'post_status' => 'inherit',
+            'guid' => $file_return['url']
+        );
+        $attachment_id = wp_insert_attachment( $attachment,  $file_return['file']);
+        require_once(ABSPATH . 'wp-admin/includes/image.php');
+        $attachment_data = wp_generate_attachment_metadata( $attachment_id, $filename );
+        wp_update_attachment_metadata( $attachment_id, $attachment_data );
 
-    if (is_writable($uploads['path']))  /*Check if upload dir is writable*/
-    {
-        if ((!empty($upload['tmp_name'])))  /*Check if uploaded image is not empty*/
-        {
-            if ($upload['tmp_name'])   /*Check if image has been uploaded in temp directory*/
-            {
-                $file = wp_handle_upload($upload); /*Call our custom function to ACTUALLY upload the image*/
-//                media_handle_upload()
-
-                $attachment = array  /*Create attachment for our post*/
-                (
-                    'post_mime_type' => $file['type']  /*Type of attachment*/
-                );
-
-                $aid = wp_insert_attachment($attachment, $file['file']);  /*Insert post attachment and return the attachment id*/
-                return wp_generate_attachment_metadata($aid, $file['file'] );  /*Generate metadata for new attacment*/
-//                $a = wp_generate_attachment_metadata($aid, $file['file'] );  /*Generate metadata for new attacment*/
-//                $prev_img = get_post_meta($post_id, 'custom_image');  /*Get previously uploaded image*/
-//                if(is_array($prev_img))
-//                {
-//                    if($prev_img[0] != '')  /*If image exists*/
-//                    {
-//                        wp_delete_attachment($prev_img[0]);  /*Delete previous image*/
-//                    }
-//                }
-//                update_post_meta($post_id, 'custom_image', $aid);  /*Save the attachment id in meta data*/
-
-//                if ( !is_wp_error($aid) )
-//                {
-//                    /*If there is no error, update the metadata of the newly uploaded image*/
-//                    wp_update_attachment_metadata($aid, wp_generate_attachment_metadata($aid, $file['file'] ) );
-//                }
-            }
-        }
-        else
-        {
-            echo 'Please upload the image.';
+        if( 0 < intval( $attachment_id ) ) {
+            // $metaData = wp_get_attachment_metadata($attachment_id); // Not use
+            $uploadDir = wp_upload_dir();
+            $metaData['full_file_url'] = $uploadDir['baseurl'].'/'.$attachment_data['file'];
+            return $metaData;
         }
     }
+    return false;
 }
+
+
+
+
+

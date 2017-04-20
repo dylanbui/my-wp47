@@ -1,6 +1,31 @@
 <aside class="sidebar">
 
-    <?php //dynamic_sidebar('sidebar-widget-area'); ?>
+    <?php // dynamic_sidebar('sidebar-widget-area'); ?>
+
+    <section class="search-2 widget_search">
+        <form action="" class="form-inline" role="search" method="get" id="searchform" >
+            <input class="form-control" value="" placeholder="Search..." name="s" id="s" type="text">
+            <button type="submit" id="searchsubmit" value="Search" class="btn btn-default">
+                <i class="glyphicon glyphicon-search"></i>
+            </button>
+        </form>
+    </section>
+
+    <section class="search-2 widget_search">
+        <?php
+
+        $items = wp_get_nav_menu_items('primary');
+        echo "<pre>";
+        print_r($items);
+        echo "</pre>";
+
+
+        ?>
+    <?php if ( has_nav_menu( 'primary' ) ) : ?>
+
+
+    <?php endif; ?>
+    </section>
 
     <?php
 
