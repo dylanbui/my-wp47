@@ -3,149 +3,99 @@
 All the functions are in the PHP pages in the functions/ folder.
 */
 
-require_once locate_template('/functions/cleanup.php');
-require_once locate_template('/functions/setup.php');
-require_once locate_template('/functions/enqueues.php');
-require_once locate_template('/functions/navbar.php');
-require_once locate_template('/functions/widgets.php');
-require_once locate_template('/functions/search.php');
-require_once locate_template('/functions/feedback.php');
 
-require_once(ABSPATH . "wp-admin" . '/includes/image.php');
-require_once(ABSPATH . "wp-admin" . '/includes/file.php');
-require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+require_once locate_template('/includes/library/utils.php');
+//require_once locate_template('/includes/library/common.php');
+require_once locate_template('/includes/startup.php');
+
+if(is_admin()) {
+    require_once locate_template('/includes/custom-admin/startup.php');
+}
 
 
 add_action('after_setup_theme', 'true_load_theme_textdomain');
-
 function true_load_theme_textdomain(){
     load_theme_textdomain( 'bst', get_template_directory() . '/languages' );
 }
 
-if( ! ( function_exists( 'db_get_custom_field' ) ) ) {
-    function db_get_custom_field($field_name, $post_id = null, $single = true)
-    {
-        // $postMeta = get_post_meta(get_the_ID()); // Show all post meta
-        if (is_null($post_id)) $post_id = get_the_ID();
-        return get_post_meta($post_id, 'wpcf-' . $field_name, $single);
-    }
-}
+///**
+// * This plugin will fix the problem where next/previous of page number buttons are broken on list
+// * of posts in a category when the custom permalink string is:
+// * /%category%/%postname%/
+// * The problem is that with a url like this:
+// * /categoryname/page/2
+// * the 'page' looks like a post name, not the keyword "page"
+// */
+//function remove_page_from_query_string($query_string)
+//{
+//    if ($query_string['name'] == 'page' && isset($query_string['page'])) {
+//        unset($query_string['name']);
+//        // 'page' in the query_string looks like '/2', so i'm spliting it out
+//        list($delim, $page_index) = split('/', $query_string['page']);
+//        $query_string['paged'] = $page_index;
+//    }
+//    return $query_string;
+//}
+//// I will kill you if you remove this. I died two days for this line
+//add_filter('request', 'remove_page_from_query_string');
+//
+//// following are code adapted from Custom Post Type Category Pagination Fix by jdantzer
+//function fix_category_pagination($qs){
+//    if(isset($qs['category_name']) && isset($qs['paged'])){
+//        $qs['post_type'] = get_post_types($args = array(
+//            'public'   => true,
+//            '_builtin' => false
+//        ));
+//        array_push($qs['post_type'],'post');
+//    }
+//    return $qs;
+//}
+//add_filter('request', 'fix_category_pagination');
 
-if( ! ( function_exists( 'db_get_custom_image_field' ) ) ) {
-    function db_get_custom_image_field($field_name, $size = 'thumbnail', $post_id = null, $single = true)
-    {
-        $arrImages = db_get_custom_field($field_name, $post_id, false);
-        if (empty($arrImages))
-            return FALSE;
-        $result = array();
-        foreach ($arrImages as $imageUrl) {
-            $postImg = db_get_attachment_by_url($imageUrl);
-            //‘thumbnail’, ‘medium’, ‘large’, size : array(100, 100)
-            $result[] = wp_get_attachment_image_url($postImg->ID, $size); // tra ve du lieu
-        }
-        if ($single)
-            return $result[0];
-        return $result;
-    }
-}
 
-if( ! ( function_exists( 'db_get_custom_datetime_field' ) ) ) {
-    function db_get_custom_datetime_field($field_name, $format = 'd/m/Y H:i:s', $post_id = null)
-    {
-        $unixtimestamp = db_get_custom_field($field_name, $post_id);
-        if (empty($unixtimestamp))
-            return null;
-        $myDateTime = date_timestamp_set(date_create(), $unixtimestamp);
-        return date_format($myDateTime, $format);
-    }
-}
+//function mg_news_pagination_rewrite() {
+//    add_rewrite_rule(get_option('category_base').'/page/?([0-9]{1,})/?$', 'index.php?pagename='.get_option('category_base').'&paged=$matches[1]', 'top');
+////    echo "NOOOOOO -- ".'index.php?pagename='.get_option('category_base').'&paged=$matches[1]<br>';
+////    echo "NOOOOOO -- ".get_option('category_base').'/page/?([0-9]{1,})/?$';
+//}
+//add_action('init', 'mg_news_pagination_rewrite');
 
-if( ! ( function_exists( 'db_get_attachment_by_post_name' ) ) ) {
-    function db_get_attachment_by_post_name($post_name) {
-        $args = array(
-            'post_per_page' => 1,
-            'post_type'     => 'attachment',
-            'name'          => trim($post_name),
-        );
-        $get_posts = new Wp_Query( $args );
 
-        if ( $get_posts->posts[0] )
-            return $get_posts->posts[0];
-        else
-            return false;
-    }
-}
+//function generate_taxonomy_rewrite_rules( $wp_rewrite )
+//{
+//    $rules = array();
+//
+//    $post_types = get_post_types( array( 'public' => true, '_builtin' => false ), 'objects' );
+//    $taxonomies = get_taxonomies( array( 'public' => true, '_builtin' => false ), 'objects' );
+//
+//    foreach ( $post_types as $post_type ) {
+//        $post_type_name = $post_type->name;
+//        $post_type_slug = $post_type->rewrite['slug'];
+//
+//        foreach ( $taxonomies as $taxonomy ) {
+//            if ( $taxonomy->object_type[0] == $post_type_name ) {
+//                $terms = get_categories( array( 'type' => $post_type_name, 'taxonomy' => $taxonomy->name, 'hide_empty' => 0 ) );
+//                foreach ( $terms as $term ) {
+//                    $rules[$post_type_slug . '/' . $term->slug . '/?$'] = 'index.php?' . $term->taxonomy . '=' . $term->slug;
+//                    $rules[$post_type_slug . '/' . $term->slug . '/page/?([0-9]{1,})/?$'] = 'index.php?' . $term->taxonomy . '=' . $term->slug . '&paged=' . $wp_rewrite->preg_index( 1 );
+//                }
+//            }
+//        }
+//    }
+//    $wp_rewrite->rules = $rules + $wp_rewrite->rules;
+//}
+//add_action('generate_rewrite_rules', 'generate_taxonomy_rewrite_rules');
 
-if( ! ( function_exists( 'db_get_attachment_by_url' ) ) ) {
-    function db_get_attachment_by_url($url) {
-        $path_parts = pathinfo($url);
-        return db_get_attachment_by_post_name($path_parts['filename']);
-    }
-}
 
-if( ! ( function_exists( 'db_redirect' ) ) ) {
-    function db_redirect($location, $status = 302) {
-        // Note: wp_redirect() does not exit automatically, and should almost always be followed by a call to exit
-        wp_redirect($location, $status);
-        exit();
-    }
-}
 
-// Add Facebook meta to post or page detail
-//Lets add Open Graph Meta Info
-function insert_fb_in_head()
-{
-    global $post;
+//function wpa89392_homepage_products( $query ) {
+//    if ( $query->is_home() && $query->is_main_query() ) {
+//        $query->set( 'post_type', array('post', 'newsletter'));
+////        $query->set( 'post_type', array( 'post', 'movies' ) );
+//    }
+//}
+//add_action( 'pre_get_posts', 'wpa89392_homepage_products' );
 
-    if ( !is_singular()) //if it is not a post or a page
-        return;
-
-    echo '<meta property="fb:admins" content="Dylan Bui"/>';
-    echo '<meta property="og:title" content="' . get_the_title() . '"/>';
-    echo '<meta property="og:type" content="article"/>';
-    echo '<meta property="og:url" content="' . get_permalink() . '"/>';
-    echo '<meta property="og:site_name" content="http://demo-wordpress.dev"/>';
-    if(!has_post_thumbnail( $post->ID )) { //the post does not have featured image, use a default image
-        $default_image="http://example.com/image.jpg"; //replace this with a default image on your server or an image in your media library
-        echo '<meta property="og:image" content="' . $default_image . '"/>';
-    }
-    else{
-        $thumbnail_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
-        echo '<meta property="og:image" content="' . esc_attr( $thumbnail_src[0] ) . '"/>';
-    }
-    echo "";
-}
-add_action( 'wp_head', 'insert_fb_in_head', 5 );
-
-// Register post form
-function register_submit_form()
-{
-    if (isset($_POST['submit_action']) && wp_verify_nonce( $_POST['submit_action_key'], $_POST['submit_action']))
-    {
-        $str_func = "dbf_form_" .$_POST['submit_action'];
-
-        if(function_exists($str_func))
-        {
-            // Run define function
-            return $str_func();
-        }
-
-    }
-}
-add_action('init', 'register_submit_form');
-/*
-<form class="royal_page" role="form" method="post">
-    <input type="hidden" name="submit_action" value="resgiter_user" />
-    <?php wp_nonce_field('resgiter_user', 'submit_action_key'); ?>
-    <input type="submit" id="submit" value="Update" />
-</form>
-
-// Process function name
-function dbf_form_resgiter_user()
-{
-    echo "Day la xu ly form dang ky";
-}
- * */
 
 
 function dbf_form_answer()
@@ -216,36 +166,6 @@ function dbf_form_answer()
     die('DONE : '. $pid);
 }
 
-
-function db_upload_user_file($file = array())
-{
-    require_once( ABSPATH . 'wp-admin/includes/admin.php' );
-    $file_return = wp_handle_upload($file, array('test_form' => false));
-    if( isset( $file_return['error'] ) || isset( $file_return['upload_error_handler'] ) ) {
-        return false;
-    } else {
-        $filename = $file_return['file'];
-        $attachment = array(
-            'post_mime_type' => $file_return['type'],
-            'post_title' => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
-            'post_content' => '',
-            'post_status' => 'inherit',
-            'guid' => $file_return['url']
-        );
-        $attachment_id = wp_insert_attachment( $attachment,  $file_return['file']);
-        require_once(ABSPATH . 'wp-admin/includes/image.php');
-        $attachment_data = wp_generate_attachment_metadata( $attachment_id, $filename );
-        wp_update_attachment_metadata( $attachment_id, $attachment_data );
-
-        if( 0 < intval( $attachment_id ) ) {
-            // $metaData = wp_get_attachment_metadata($attachment_id); // Not use
-            $uploadDir = wp_upload_dir();
-            $metaData['full_file_url'] = $uploadDir['baseurl'].'/'.$attachment_data['file'];
-            return $metaData;
-        }
-    }
-    return false;
-}
 
 
 

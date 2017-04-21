@@ -13,18 +13,12 @@
 
     <section class="search-2 widget_search">
         <?php
-
-        $items = wp_get_nav_menu_items('primary');
-        echo "<pre>";
-        print_r($items);
-        echo "</pre>";
-
-
+        // -- Get menu items --
+//        $items = wp_get_nav_menu_items('primary');
+//        echo "<pre>";
+//        print_r($items);
+//        echo "</pre>";
         ?>
-    <?php if ( has_nav_menu( 'primary' ) ) : ?>
-
-
-    <?php endif; ?>
     </section>
 
     <?php
@@ -49,7 +43,7 @@
             if ($tag->term_id == $currentTagId)
                 $html .= "(Active) ";
 
-            $html .= "{$tag->name} ({$tag->count})</a>";
+            $html .= "<span class='badge'># {$tag->name} ({$tag->count})</span></a>";
             $html .= "</li>";
         }
         $html .= '</ul></section>';

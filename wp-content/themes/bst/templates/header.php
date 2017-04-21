@@ -50,7 +50,7 @@
                     'walker'            => new wp_bootstrap_navwalker())
             );
             ?>
-            <?php get_template_part('includes/navbar-search'); ?>
+            <?php get_template_part('templates/navbar-search'); ?>
 
             <div class="menu-primary-container">
                 <ul id="menu-primary" class="nav navbar-nav navbar-right">

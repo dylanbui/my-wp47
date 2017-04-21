@@ -1,7 +1,7 @@
 <?php
 
 function bst_setup() {
-	add_editor_style('css/editor-style.css');
+	add_editor_style('/assets/css/editor-style.css');
 	add_theme_support('post-thumbnails');
 	update_option('thumbnail_size_w', 170);
 	update_option('medium_size_w', 470);
@@ -61,15 +61,27 @@ add_theme_support('post-formats', array('aside', 'gallery', 'link', 'image', 'qu
 // Bootstrap pagination
 
 if ( ! function_exists( 'bst_pagination' ) ) {
-	function bst_pagination() {
-		global $wp_query;
+	function bst_pagination($query = null)
+    {
+        global $wp_query;
+        $query = $query ? $query : $wp_query;
+
 		$big = 999999999; // This needs to be an unlikely integer
 		// For more options and info view the docs for paginate_links()
 		// http://codex.wordpress.org/Function_Reference/paginate_links
 		$paginate_links = paginate_links( array(
-			'base' => str_replace( $big, '%#%', get_pagenum_link($big) ),
+//			'base' => str_replace( $big, '%#%', get_pagenum_link($big) ),
 			'current' => max( 1, get_query_var('paged') ),
-			'total' => $wp_query->max_num_pages,
+//			'total' => $query->max_num_pages,
+
+
+            'base' => str_replace( $big, '%#%', esc_url(get_pagenum_link($big))),
+//            'base' => get_pagenum_link(1) . '%_%',
+
+//            'type' => 'array',
+            'total' => $query->max_num_pages,
+//            'format' => '?paged=%#%',
+
 			'mid_size' => 5,
 			'prev_next' => True,
 			'prev_text' => __('<i class="glyphicon glyphicon-chevron-left"></i> Newer'),
