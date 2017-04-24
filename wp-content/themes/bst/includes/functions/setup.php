@@ -69,6 +69,9 @@ if ( ! function_exists( 'bst_pagination' ) ) {
 		$big = 999999999; // This needs to be an unlikely integer
 		// For more options and info view the docs for paginate_links()
 		// http://codex.wordpress.org/Function_Reference/paginate_links
+
+
+
 		$paginate_links = paginate_links( array(
 //			'base' => str_replace( $big, '%#%', get_pagenum_link($big) ),
 			'current' => max( 1, get_query_var('paged') ),
