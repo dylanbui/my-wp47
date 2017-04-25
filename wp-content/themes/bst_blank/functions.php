@@ -189,4 +189,5 @@ function yourfunction() {
 }
 //add_action('init', 'yourfunction');
 add_action( "template_redirect", "yourfunction" );
-
+//https://markjaquith.wordpress.com/2014/02/19/template_redirect-is-not-for-loading-templates/
+//https://codereview.stackexchange.com/questions/101364/simple-router-class
