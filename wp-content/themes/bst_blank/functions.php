@@ -3,6 +3,7 @@
 All the functions are in the PHP pages in the functions/ folder.
 */
 
+define('__TEMPLATES_HTML_PATH' ,get_theme_root().'/'.get_template());
 
 require_once locate_template('/includes/library/utils.php');
 //require_once locate_template('/includes/library/common.php');
@@ -96,13 +97,13 @@ function true_load_theme_textdomain(){
 //}
 //add_action( 'pre_get_posts', 'wpa89392_homepage_products' );
 
-
-
 function dbf_form_answer()
 {
     echo "<pre>";
     print_r($_POST);
     echo "</pre>";
+    db_redirect('gioi-thieu');
+    exit();
 
     //store our post vars into variables for later use
     //now would be a good time to run some basic error checking/validation
@@ -166,8 +167,26 @@ function dbf_form_answer()
     die('DONE : '. $pid);
 }
 
+// -- Load function xong, se loai index.php --
 
+function yourfunction() {
+    // -- Lay gia tri hien tai --
+    global $wp_query;
+//    $postObject = $wp_query->get_queried_object();
+    $postObject = get_queried_object();
+    echo "<pre>";
+    print_r('cai gi day : yourfunction');
+    echo "</pre>";
 
+    echo "<pre>";
+    print_r($postObject);
+    echo "</pre>";
 
+//    db_load_templates_html('index.php');
 
+    exit();
+
+}
+//add_action('init', 'yourfunction');
+add_action( "template_redirect", "yourfunction" );
 

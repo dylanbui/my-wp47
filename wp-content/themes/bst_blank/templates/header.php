@@ -61,7 +61,7 @@
                         <a title="Liên Hệ" href="http://demo-wordpress.dev/lien-he/">Liên Hệ</a>
                     </li>
                     <li id="menu-item-35" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-35">
-                        <a title="Sample Page" href="http://demo-wordpress.dev/sample-page/">Sample Page</a>
+                        <a title="Sample Page" href="http://demo-wordpress.dev/hoi-dap/">Hỏi đáp</a>
                     </li>
                     <li id="menu-item-64" class="menu-item menu-item-type-taxonomy menu-item-object-article-directory menu-item-has-children menu-item-64 dropdown">
                         <a title="Công nghệ" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Công nghệ <span class="caret"></span></a>

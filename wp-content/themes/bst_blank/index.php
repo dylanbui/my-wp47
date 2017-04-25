@@ -1,3 +1,9 @@
+<?php
+    /*
+     * Dung trang index lam main template
+     * */
+?>
+
 <?php get_template_part('templates/header'); ?>
 
 <div class="container">
@@ -8,9 +14,29 @@
 
             <div id="content" role="main">
 
-            <?php // get_template_part('templates/loops/content', get_post_format()); ?>
+            <?php
 
-            <?php //get_template_part('templates/loops/content', 'question'); ?>
+            if(is_home()) {
+                get_template_part('templates/actions/home');
+            } elseif( is_single() ) {
+                get_template_part('templates/actions/single');
+            } elseif( is_page() ) {
+                $pageObject = get_queried_object();
+                get_template_part('templates/actions/pages/'.$pageObject->post_name);
+            } elseif( is_archive() ) {
+                // -- Include taxonomy, category, tag --
+                get_template_part('templates/actions/archive');
+//                if (is_tag()) {
+//                    get_template_part('templates/actions/tag');
+//                } else {
+//                    // -- Include taxonomy, category --
+//                    get_template_part('templates/actions/archive');
+//                }
+            } elseif (is_search()) {
+                get_template_part('templates/actions/search');
+            }
+
+            ?>
 
             </div><!-- /#content -->
 
