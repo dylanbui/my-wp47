@@ -4,9 +4,20 @@ All the functions are in the PHP pages in the functions/ folder.
 */
 
 define('__TEMPLATES_HTML_PATH' ,get_theme_root().'/'.get_template());
+define('__APP_PATH' ,get_theme_root().'/'.get_template().'/app');
+define('__CONTROLLER_PATH' ,__APP_PATH.'/controllers');
+define('__VIEW_PATH' ,__APP_PATH.'/views');
 
 require_once locate_template('/includes/library/utils.php');
 require_once locate_template('/includes/library/router.php');
+require_once locate_template('/includes/library/controller.php');
+require_once locate_template('/includes/library/view.php');
+
+require_once locate_template('/app/controllers/HomeController.php');
+require_once locate_template('/app/controllers/PageController.php');
+require_once locate_template('/app/controllers/SingleController.php');
+require_once locate_template('/app/controllers/ArchiveController.php');
+
 //require_once locate_template('/includes/library/common.php');
 require_once locate_template('/includes/startup.php');
 
@@ -211,45 +222,47 @@ function before_load_template() {
 //https://markjaquith.wordpress.com/2014/02/19/template_redirect-is-not-for-loading-templates/
 //https://codereview.stackexchange.com/questions/101364/simple-router-class
 
-// Ham nay chau sau ca : template_redirect. Xac dinh loai file nao khi chay, index.php, archive.php, page.php
-function my_callback( $original_template )
+// Ham nay chay sau ca : template_redirect. Xac dinh loai file nao khi chay, index.php, archive.php, page.php
+function my_template_include( $original_template )
 {
+    $controller = null;
+    $content = null;
+    $queried_object = get_queried_object();
     if(is_home()) {
-        get_template_part('templates/actions/home');
+        $controller = new HomeController();
     } elseif( is_single() ) {
-        get_template_part('templates/actions/single');
+        $controller = new SingleController();
     } elseif( is_page() ) {
-        $pageObject = get_queried_object();
-        get_template_part('templates/actions/pages/'.$pageObject->post_name);
-    } elseif( is_archive() ) {
+        $controller = new PageController();
+    } elseif(is_archive() || is_search()) {
+        $controller = new ArchiveController();
         // -- Include taxonomy, category, tag --
-        get_template_part('templates/actions/archive');
 //                if (is_tag()) {
 //                    get_template_part('templates/actions/tag');
 //                } else {
 //                    // -- Include taxonomy, category --
 //                    get_template_part('templates/actions/archive');
 //                }
-    } elseif (is_search()) {
-        get_template_part('templates/actions/search');
     }
 
-
-    echo $original_template;
-
-    if (is_page()) {
-        echo "<pre>";
-        print_r('Day la PAGE');
-        echo "</pre>";
-
+    if ($controller) {
+        $controller->queried_object = $queried_object;
+        echo $controller->run();
+        exit();
     }
 
-    $postObject = get_queried_object();
-    echo "<pre>";
-    print_r($postObject);
-    echo "</pre>";
-    exit();
+//    echo $original_template;
+//    $postObject = get_queried_object();
+//    echo "<pre>";
+//    print_r($postObject);
+//    echo "</pre>";
+//    exit();
     return $original_template;
 }
+/*
+ * Phai dung ham nay truoc khi load ma khong dung index.php vi se kho khan
+ * khi tao SEO link, vi no se chuyen SEO link qua 404.php truoc khi kip xu ly no trong index.php.
+ * trong cach xu ly hien nay, thi khong can dung index.php, chi can 404.php
+ */
+add_filter( 'template_include', 'my_template_include' );
 
-//add_filter( 'template_include', 'my_callback' );
