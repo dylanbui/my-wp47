@@ -6,6 +6,7 @@ All the functions are in the PHP pages in the functions/ folder.
 define('__TEMPLATES_HTML_PATH' ,get_theme_root().'/'.get_template());
 
 require_once locate_template('/includes/library/utils.php');
+require_once locate_template('/includes/library/router.php');
 //require_once locate_template('/includes/library/common.php');
 require_once locate_template('/includes/startup.php');
 
@@ -169,25 +170,86 @@ function dbf_form_answer()
 
 // -- Load function xong, se loai index.php --
 
-function yourfunction() {
+function before_load_template() {
+
+    $router = new Router();
+
+    $router->basic('/', function(){
+        echo 'Hello';
+    });
+
+    // get with regex named params
+    $router->basic('/chi-tiet/(:slug)-post(:num).html', function($slug, $id){
+        echo "name: $slug id: $id";
+    });
+
+    $router->basic('/blog/(:name)/(:num)', function($product_type, $id){
+        echo 'catalog/product_edit/'.strtolower($product_type).'/'.$id;
+    });
+
+    $router->match($_SERVER);
+
     // -- Lay gia tri hien tai --
-    global $wp_query;
-//    $postObject = $wp_query->get_queried_object();
-    $postObject = get_queried_object();
+//    global $wp_query;
+////    $postObject = $wp_query->get_queried_object();
+//    $postObject = get_queried_object();
     echo "<pre>";
-    print_r('cai gi day : yourfunction');
+    print_r('Cai gi day : before_load_template');
     echo "</pre>";
-
-    echo "<pre>";
-    print_r($postObject);
-    echo "</pre>";
-
-//    db_load_templates_html('index.php');
-
+//
+//    echo "<pre>";
+//    print_r($postObject);
+//    echo "</pre>";
+//
+////    db_load_templates_html('index.php');
+//
     exit();
 
 }
-//add_action('init', 'yourfunction');
-add_action( "template_redirect", "yourfunction" );
+
+//add_action( "template_redirect", "before_load_template");
 //https://markjaquith.wordpress.com/2014/02/19/template_redirect-is-not-for-loading-templates/
 //https://codereview.stackexchange.com/questions/101364/simple-router-class
+
+// Ham nay chau sau ca : template_redirect. Xac dinh loai file nao khi chay, index.php, archive.php, page.php
+function my_callback( $original_template )
+{
+    if(is_home()) {
+        get_template_part('templates/actions/home');
+    } elseif( is_single() ) {
+        get_template_part('templates/actions/single');
+    } elseif( is_page() ) {
+        $pageObject = get_queried_object();
+        get_template_part('templates/actions/pages/'.$pageObject->post_name);
+    } elseif( is_archive() ) {
+        // -- Include taxonomy, category, tag --
+        get_template_part('templates/actions/archive');
+//                if (is_tag()) {
+//                    get_template_part('templates/actions/tag');
+//                } else {
+//                    // -- Include taxonomy, category --
+//                    get_template_part('templates/actions/archive');
+//                }
+    } elseif (is_search()) {
+        get_template_part('templates/actions/search');
+    }
+
+
+    echo $original_template;
+
+    if (is_page()) {
+        echo "<pre>";
+        print_r('Day la PAGE');
+        echo "</pre>";
+
+    }
+
+    $postObject = get_queried_object();
+    echo "<pre>";
+    print_r($postObject);
+    echo "</pre>";
+    exit();
+    return $original_template;
+}
+
+//add_filter( 'template_include', 'my_callback' );
