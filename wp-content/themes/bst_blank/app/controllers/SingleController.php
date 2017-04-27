@@ -30,6 +30,9 @@ class SingleController extends Controller
 //        );
 //
 //        $my_query = new WP_Query($my_args);
+
+        // -- Need to check have_posts() and call the_post()  --
+
         $file = 'wp/single-'.$this->queried_object->post_type;
         return $this->renderView($file);
 
@@ -43,4 +46,25 @@ class SingleController extends Controller
 //        }
 
     }
+
+    public function chiTietAction($id)
+    {
+        $my_args = array(
+            'post_type' => 'newsletter',
+            'p' => $id
+        );
+
+        $my_query = new WP_Query($my_args);
+
+        if ($my_query->have_posts()) {
+            $my_query->the_post();
+            return $this->renderView('wp/single-newsletter', array('my_query' => $my_query));
+        } else {
+            return $this->renderView('none-value');
+        }
+
+
+
+    }
+
 }

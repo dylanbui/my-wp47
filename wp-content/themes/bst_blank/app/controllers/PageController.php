@@ -14,19 +14,19 @@ class PageController extends Controller
     }
 
     public function run() {
-        $strPage = lowerCamelcase($this->queried_object->post_name).'Page';
+        $strPage = lowerCamelcase($this->queried_object->post_name).'Action';
         return $this->{$strPage}(); //lowerCamelcase($this->queried_object->post_name);
     }
 
-    public function gioiThieuPage() {
+    public function gioiThieuAction() {
         return $this->renderView('wp/page/gioi-thieu');
     }
 
-    public function lienHePage() {
+    public function lienHeAction() {
         return $this->renderView('wp/page/lien-he');
     }
 
-    public function hoiDapPage() {
+    public function hoiDapAction() {
 
         if ($this->isPostForm()) {
 

@@ -31,6 +31,24 @@ function true_load_theme_textdomain(){
     load_theme_textdomain( 'bst', get_template_directory() . '/languages' );
 }
 
+function themes_dir_add_rewrites() {
+    $theme_name = next(explode('/themes/', get_stylesheet_directory()));
+    global $wp_rewrite;
+    $new_non_wp_rules = array(
+        'css/(.*)'       => 'wp-content/themes/'. $theme_name . '/assets/css/$1',
+        'js/(.*)'        => 'wp-content/themes/'. $theme_name . '/assets/js/$1',
+        'images/wordpress-urls-rewrite/(.*)'    => 'wp-content/themes/'. $theme_name . '/images/wordpress-urls-rewrite/$1',
+    );
+
+    echo "<pre>";
+    print_r($new_non_wp_rules);
+    echo "</pre>";
+    exit();
+
+    $wp_rewrite->non_wp_rules += $new_non_wp_rules;
+}
+add_action('generate_rewrite_rules', 'themes_dir_add_rewrites');
+
 ///**
 // * This plugin will fix the problem where next/previous of page number buttons are broken on list
 // * of posts in a category when the custom permalink string is:
@@ -246,16 +264,21 @@ function my_template_include( $original_template )
         exit();
     }
 
+    // -- Khong tim thay du lieu Wordpress --
+    // -- Xu ly theo router --
     $router = new Router();
 
     // get with regex named params
     $router->basic('/chi-tiet/(:slug)-post(:num).html', function($slug, $id){
-        echo "name: $slug id: $id";
+        $controller = new SingleController();
+        echo $controller->chiTietAction($id);
+        exit();
+//        echo "name: $slug id: $id";
     });
 
-    $router->basic('/blog/(:name)/(:num)', function($product_type, $id){
-        echo 'Show product_edit : '.strtolower($product_type).'/'.$id;
-    });
+//    $router->basic('/blog/(:name)/(:num)', function($product_type, $id){
+//        echo 'Show product_edit : '.strtolower($product_type).'/'.$id;
+//    });
 
     $router->match($_SERVER);
 
