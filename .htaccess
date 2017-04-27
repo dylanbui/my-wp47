@@ -4,6 +4,7 @@ AddDefaultCharset UTF-8
 	RewriteEngine On
 	RewriteBase /
 	RewriteRule ^index\.php$ - [L]
+    RewriteRule ^assets/(.*) /wp-content/themes/bst_mvc/assets/$1 [QSA,L]
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteRule . /index.php [L]
