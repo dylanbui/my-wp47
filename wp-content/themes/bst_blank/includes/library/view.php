@@ -153,7 +153,7 @@ class View
 
     public function fetch($path,$args = array())
     {
-        $path = $this->templateDir . '/' . $path . '.phtml';
+        $path = $this->templateDir . '/' . $path . '.php';
 
         if (file_exists($path) == false)
         {
@@ -176,9 +176,9 @@ class View
         $this->variables['main_content'] = $this->fetch($content_path);
 
         if(is_null($layout_path))
-            $layout_path = $this->templateDir."/layout.phtml";
+            $layout_path = $this->templateDir."/layout.php";
         else
-            $layout_path = $this->templateDir.'/'.$layout_path.'.phtml';
+            $layout_path = $this->templateDir.'/'.$layout_path.'.php';
 
         if (file_exists($layout_path) == false)
         {

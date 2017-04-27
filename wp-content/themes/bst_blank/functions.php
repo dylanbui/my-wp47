@@ -109,7 +109,7 @@ function true_load_theme_textdomain(){
 //}
 //add_action( 'pre_get_posts', 'wpa89392_homepage_products' );
 
-function dbf_form_answer()
+function dbf_form_answer_khong_su_dung()
 {
     echo "<pre>";
     print_r($_POST);
@@ -235,21 +235,31 @@ function my_template_include( $original_template )
     } elseif( is_page() ) {
         $controller = new PageController();
     } elseif(is_archive() || is_search()) {
-        $controller = new ArchiveController();
         // -- Include taxonomy, category, tag --
-//                if (is_tag()) {
-//                    get_template_part('templates/actions/tag');
-//                } else {
-//                    // -- Include taxonomy, category --
-//                    get_template_part('templates/actions/archive');
-//                }
+        $controller = new ArchiveController();
     }
 
+    // -- Start wordpress process --
     if ($controller) {
         $controller->queried_object = $queried_object;
         echo $controller->run();
         exit();
     }
+
+    $router = new Router();
+
+    // get with regex named params
+    $router->basic('/chi-tiet/(:slug)-post(:num).html', function($slug, $id){
+        echo "name: $slug id: $id";
+    });
+
+    $router->basic('/blog/(:name)/(:num)', function($product_type, $id){
+        echo 'Show product_edit : '.strtolower($product_type).'/'.$id;
+    });
+
+    $router->match($_SERVER);
+
+
 
 //    echo $original_template;
 //    $postObject = get_queried_object();

@@ -13,7 +13,34 @@ class SingleController extends Controller
         parent::__construct();
     }
 
-    public function run() {
+    public function run()
+    {
+        //WP_Post Object
+        //(
+        //    [ID] => 31
+        //    [post_author] => 1
+        //    [post_date] => 2017-04-18 06:56:24
+        //    [post_date_gmt] => 2017-04-18 06:56:24
+        //    [post_content] =>
+        //    [post_type] => post || [custom type] (newsletter)
+
+//        $my_args = array(
+//            'post_type' => $this->queried_object->post_type,
+//            'p' => $this->queried_object->ID
+//        );
+//
+//        $my_query = new WP_Query($my_args);
+        $file = 'wp/single-'.$this->queried_object->post_type;
+        return $this->renderView($file);
+
+//        if (have_posts()) {
+//            if ($this->queried_object->post_type == 'newsletter')
+//                db_load_templates_html('templates/views/single-newsletter.php');
+//            else
+//                db_load_templates_html('templates/views/single.php');
+//        } else {
+//            db_load_templates_html('templates/views/none-value.php');
+//        }
 
     }
 }

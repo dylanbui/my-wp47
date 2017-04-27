@@ -109,31 +109,31 @@ if( ! ( function_exists( 'db_get_attachment_by_url' ) ) ) {
 }
 
 if( ! ( function_exists( 'db_redirect' ) ) ) {
-//    function db_redirect($uri = '', $method = 'location', $http_response_code = 302)
-//    {
-//        if (!preg_match('#^https?://#i', $uri)) {
-//            $uri = db_site_url($uri);
-//        }
-//
-//        switch ($method) {
-//            case 'refresh'  :
-//                header("Refresh:0;url=" . $uri);
-//                break;
-//            default         :
-//                header("Location: " . $uri, TRUE, $http_response_code);
-//                break;
-//        }
-//        exit;
-//    }
-
-    function db_redirect($location, $status = 302) {
-        // Note: wp_redirect() does not exit automatically, and should almost always be followed by a call to exit
-        if (!preg_match('#^https?://#i', $location)) {
-            $location = db_site_url($location);
+    function db_redirect($uri = '', $method = 'location', $http_response_code = 302)
+    {
+        if (!preg_match('#^https?://#i', $uri)) {
+            $uri = db_site_url($uri);
         }
-        wp_redirect($location, $status);
-        exit();
+
+        switch ($method) {
+            case 'refresh'  :
+                header("Refresh:0;url=" . $uri);
+                break;
+            default         :
+                header("Location: " . $uri, TRUE, $http_response_code);
+                break;
+        }
+        exit;
     }
+
+//    function db_redirect($location, $status = 302) {
+//        // Note: wp_redirect() does not exit automatically, and should almost always be followed by a call to exit
+//        if (!preg_match('#^https?://#i', $location)) {
+//            $location = db_site_url($location);
+//        }
+//        wp_redirect($location, $status);
+//        exit();
+//    }
 }
 
 if( ! ( function_exists( 'db_upload_user_file' ) ) ) {
@@ -220,5 +220,83 @@ if( !function_exists( 'db_load_templates_html' ) )
 
         if( $return )
         { return ob_get_clean(); }
+    }
+}
+
+if( !function_exists( 'is_php' ) ) {
+    /**
+     * Determines if the current version of PHP is greater then the supplied value
+     *
+     * Since there are a few places where we conditionally test for PHP > 5
+     * we'll set a static variable.
+     *
+     * @access    public
+     * @param    string
+     * @return    bool
+     */
+    function is_php($version = '5.0.0')
+    {
+        static $_is_php;
+        $version = (string)$version;
+
+        if (!isset($_is_php[$version])) {
+            $_is_php[$version] = (version_compare(PHP_VERSION, $version) < 0) ? FALSE : TRUE;
+        }
+
+        return $_is_php[$version];
+    }
+}
+
+if( !function_exists( 'upperCamelcase' ) ) {
+//// underscored to upper-camelcase
+//// e.g. "this_method_name" -> "ThisMethodName"
+    function upperCamelcase($string)
+    {
+        if (is_php('7.0')) {
+            // -- User for php 5.6 -> 7 --
+            $result = preg_replace_callback(
+                '/(?:^|-)(.?)/',
+                function ($match) {
+                    return strtoupper($match[1]);
+                },
+                $string
+            );
+        } else {
+            $result = preg_replace('/(?:^|-)(.?)/e', "strtoupper('$1')", $string);
+        }
+        return $result;
+    }
+}
+
+if( !function_exists( 'lowerCamelcase' ) ) {
+//// underscored to lower-camelcase
+//// e.g. "this_method_name" -> "thisMethodName"
+    function lowerCamelcase($string)
+    {
+        if (is_php('7.0')) {
+            $result = preg_replace_callback(
+                '/-(.?)/',
+                function ($match) {
+                    return strtoupper($match[1]);
+                },
+                $string
+            );
+        } else {
+            $result = preg_replace('/-(.?)/e', "strtoupper('$1')", $string);
+        }
+        return $result;
+    }
+}
+
+if( !function_exists( 'camelcaseToHyphen' ) ) {
+// camelcase (lower or upper) to hyphen
+// e.g. "thisMethodName" -> "this_method_name"
+// e.g. "ThisMethodName" -> "this_method_name"
+// Of course these aren't 100% symmetric.  For example...
+//  * this_is_a_string -> ThisIsAString -> this_is_astring
+//  * GetURLForString -> get_urlfor_string -> GetUrlforString
+    function camelcaseToHyphen($string)
+    {
+        return strtolower(preg_replace('/([^A-Z])([A-Z])/', "$1-$2", $string));
     }
 }

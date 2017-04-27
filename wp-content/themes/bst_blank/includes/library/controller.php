@@ -25,6 +25,11 @@ abstract class Controller implements IController
         $this->view = new View(__VIEW_PATH);
     }
 
+    protected function isPostForm()
+    {
+        return (isset($_POST['submit_action']) && wp_verify_nonce( $_POST['submit_action_key'], $_POST['submit_action']));
+    }
+
     protected function renderView($path, $variables = array(), $layout_path = NULL)
     {
         //-- Set variables for view --

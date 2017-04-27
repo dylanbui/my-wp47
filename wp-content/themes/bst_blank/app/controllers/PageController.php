@@ -14,6 +14,33 @@ class PageController extends Controller
     }
 
     public function run() {
-
+        $strPage = lowerCamelcase($this->queried_object->post_name).'Page';
+        return $this->{$strPage}(); //lowerCamelcase($this->queried_object->post_name);
     }
+
+    public function gioiThieuPage() {
+        return $this->renderView('wp/page/gioi-thieu');
+    }
+
+    public function lienHePage() {
+        return $this->renderView('wp/page/lien-he');
+    }
+
+    public function hoiDapPage() {
+
+        if ($this->isPostForm()) {
+
+            echo "da post du lieu<pre>";
+            print_r($_POST);
+            echo "</pre>";
+
+            db_redirect('lien-he');
+
+            exit();
+        }
+
+        return $this->renderView('wp/page/hoi-dap');
+    }
+
+
 }
