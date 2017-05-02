@@ -6,6 +6,12 @@ All the functions are in the PHP pages in the functions/ folder.
 define('__TEMPLATES_HTML_PATH' ,get_theme_root().'/'.get_template());
 
 /* Sau khi chinh file htaccess thi chuyen __TEMPLATES_DIRECTORY_URI = '' */
+/*
+	RewriteRule ^index\.php$ - [L]
+    RewriteRule ^assets/(.*) /wp-content/themes/[theme-name]/assets/$1 [QSA,L]
+	RewriteCond %{REQUEST_FILENAME} !-f
+ */
+
 define('__TEMPLATES_DIRECTORY_URI' ,get_template_directory_uri());
 
 define('__APP_PATH' ,get_theme_root().'/'.get_template().'/app');
@@ -28,7 +34,6 @@ require_once locate_template('/includes/startup.php');
 if(is_admin()) {
     require_once locate_template('/includes/custom-admin/startup.php');
 }
-
 
 add_action('after_setup_theme', 'true_load_theme_textdomain');
 function true_load_theme_textdomain(){
@@ -121,42 +126,6 @@ add_action( 'after_setup_theme', 'remove_api' );
 //}
 //add_filter('request', 'fix_category_pagination');
 
-
-//function mg_news_pagination_rewrite() {
-//    add_rewrite_rule(get_option('category_base').'/page/?([0-9]{1,})/?$', 'index.php?pagename='.get_option('category_base').'&paged=$matches[1]', 'top');
-////    echo "NOOOOOO -- ".'index.php?pagename='.get_option('category_base').'&paged=$matches[1]<br>';
-////    echo "NOOOOOO -- ".get_option('category_base').'/page/?([0-9]{1,})/?$';
-//}
-//add_action('init', 'mg_news_pagination_rewrite');
-
-
-//function generate_taxonomy_rewrite_rules( $wp_rewrite )
-//{
-//    $rules = array();
-//
-//    $post_types = get_post_types( array( 'public' => true, '_builtin' => false ), 'objects' );
-//    $taxonomies = get_taxonomies( array( 'public' => true, '_builtin' => false ), 'objects' );
-//
-//    foreach ( $post_types as $post_type ) {
-//        $post_type_name = $post_type->name;
-//        $post_type_slug = $post_type->rewrite['slug'];
-//
-//        foreach ( $taxonomies as $taxonomy ) {
-//            if ( $taxonomy->object_type[0] == $post_type_name ) {
-//                $terms = get_categories( array( 'type' => $post_type_name, 'taxonomy' => $taxonomy->name, 'hide_empty' => 0 ) );
-//                foreach ( $terms as $term ) {
-//                    $rules[$post_type_slug . '/' . $term->slug . '/?$'] = 'index.php?' . $term->taxonomy . '=' . $term->slug;
-//                    $rules[$post_type_slug . '/' . $term->slug . '/page/?([0-9]{1,})/?$'] = 'index.php?' . $term->taxonomy . '=' . $term->slug . '&paged=' . $wp_rewrite->preg_index( 1 );
-//                }
-//            }
-//        }
-//    }
-//    $wp_rewrite->rules = $rules + $wp_rewrite->rules;
-//}
-//add_action('generate_rewrite_rules', 'generate_taxonomy_rewrite_rules');
-
-
-
 //function wpa89392_homepage_products( $query ) {
 //    if ( $query->is_home() && $query->is_main_query() ) {
 //        $query->set( 'post_type', array('post', 'newsletter'));
@@ -165,116 +134,6 @@ add_action( 'after_setup_theme', 'remove_api' );
 //}
 //add_action( 'pre_get_posts', 'wpa89392_homepage_products' );
 
-function dbf_form_answer_khong_su_dung()
-{
-    echo "<pre>";
-    print_r($_POST);
-    echo "</pre>";
-    db_redirect('gioi-thieu');
-    exit();
-
-    //store our post vars into variables for later use
-    //now would be a good time to run some basic error checking/validation
-    //to ensure that data for these values have been set
-    $title     = $_POST['title'];
-    $cau_hoi   = $_POST['cau-hoi'];
-    $post_type = 'question';
-
-    // -- Process upload --
-    $upload = $_FILES['hinh-dai-dien']; /*Receive the uploaded image from form*/
-
-    $uploadFileFullUrl = '';
-    if (!empty($upload)) {
-        $metaData = db_upload_user_file($upload); /*Call image uploader function*/
-        $uploadFileFullUrl = $metaData['full_file_url'];
-        echo "<pre>";
-        print_r($metaData);
-        echo "</pre>";
-    }
-
-    //the array of arguements to be inserted with wp_insert_post
-    $new_post = array(
-        'post_title'    => $title,
-        //'post_status'   => 'publish',
-        'post_status'   => 'pending',
-        'post_type'     => $post_type
-    );
-
-    //insert the the post into database by passing $new_post to wp_insert_post
-    //store our post ID in a variable $pid
-    //we now use $pid (post id) to help add out post meta data
-    $pid = wp_insert_post($new_post);
-
-    //we now use $pid (post id) to help add out post meta data
-    add_post_meta($pid, 'wpcf-cau-hoi', $cau_hoi);
-
-    // -- Upload file field --
-    add_post_meta($pid, 'wpcf-hinh-dai-dien', $uploadFileFullUrl);
-
-//    if (!function_exists('wp_generate_attachment_metadata')){
-//        require_once(ABSPATH . "wp-admin" . '/includes/image.php');
-//        require_once(ABSPATH . "wp-admin" . '/includes/file.php');
-//        require_once(ABSPATH . "wp-admin" . '/includes/media.php');
-//    }
-
-//    add_post_meta($pid, 'wpcf-cau-hoi', $cau_hoi);
-//    $upload = $_FILES['hinh-dai-dien']; /*Receive the uploaded image from form*/
-
-//    echo "<pre>";
-//    print_r($_FILES);
-//    echo "</pre>";
-
-//    if (!empty($upload)) {
-//        $meta_data = upload_user_file($upload); /*Call image uploader function*/
-//        echo "<pre>";
-//        print_r($meta_data);
-//        echo "</pre>";
-//    }
-
-    echo get_permalink($pid).'<br>';
-    die('DONE : '. $pid);
-}
-
-// -- Load function xong, se loai index.php --
-
-function before_load_template() {
-
-    $router = new Router();
-
-    $router->basic('/', function(){
-        echo 'Hello';
-    });
-
-    // get with regex named params
-    $router->basic('/chi-tiet/(:slug)-post(:num).html', function($slug, $id){
-        echo "name: $slug id: $id";
-    });
-
-    $router->basic('/blog/(:name)/(:num)', function($product_type, $id){
-        echo 'catalog/product_edit/'.strtolower($product_type).'/'.$id;
-    });
-
-    $router->match($_SERVER);
-
-    // -- Lay gia tri hien tai --
-//    global $wp_query;
-////    $postObject = $wp_query->get_queried_object();
-//    $postObject = get_queried_object();
-    echo "<pre>";
-    print_r('Cai gi day : before_load_template');
-    echo "</pre>";
-//
-//    echo "<pre>";
-//    print_r($postObject);
-//    echo "</pre>";
-//
-////    db_load_templates_html('index.php');
-//
-    exit();
-
-}
-
-//add_action( "template_redirect", "before_load_template");
 //https://markjaquith.wordpress.com/2014/02/19/template_redirect-is-not-for-loading-templates/
 //https://codereview.stackexchange.com/questions/101364/simple-router-class
 
@@ -311,7 +170,6 @@ function my_template_include( $original_template )
         $controller = new SingleController();
         echo $controller->chiTietAction($id);
         exit();
-//        echo "name: $slug id: $id";
     });
 
 //    $router->basic('/blog/(:name)/(:num)', function($product_type, $id){
@@ -319,8 +177,6 @@ function my_template_include( $original_template )
 //    });
 
     $router->match($_SERVER);
-
-
 
 //    echo $original_template;
 //    $postObject = get_queried_object();

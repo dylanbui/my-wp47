@@ -67,6 +67,34 @@ function remove_types_info_box() {
 }
 add_filter( 'types_information_table', 'remove_types_info_box' );
 
+// Hide Types Button : Types plugin
+function hide_types_buttons() {
+    echo '<style type="text/css">
+            .wp-media-buttons .wpv-shortcode-post-icon { display:none }
+    </style>';
+}
+add_action('admin_print_styles', 'hide_types_buttons', 100);
+
+
+/*------------------------------------------------------------------------------------
+    remove quick edit for custom post type videos just to check if less mem consumption
+------------------------------------------------------------------------------------*/
+function remove_row_actions( $actions, $post )
+{
+//    global $current_screen;
+//    if( $current_screen->post_type != 'videos' ) return $actions;
+//    unset( $actions['edit'] );
+//    unset( $actions['view'] );
+//    unset( $actions['trash'] );
+
+    // Open view target="blank"
+    $actions['view'] = str_replace('rel="permalink"' ,'rel="permalink" target="blank"' ,$actions['view']);
+
+    unset( $actions['inline hide-if-no-js'] );
+    //$actions['inline hide-if-no-js'] .= __( 'Quick&nbsp;Edit' );
+    return $actions;
+}
+add_filter( 'post_row_actions', 'remove_row_actions', 10, 2 );
 
 // -- Remove widgets att dashboard --
 function remove_dashboard_meta() {

@@ -4,6 +4,10 @@ All the functions are in the PHP pages in the functions/ folder.
 */
 
 define('__TEMPLATES_HTML_PATH' ,get_theme_root().'/'.get_template());
+
+/* Sau khi chinh file htaccess thi chuyen __TEMPLATES_DIRECTORY_URI = '' */
+define('__TEMPLATES_DIRECTORY_URI' ,get_template_directory_uri());
+
 define('__APP_PATH' ,get_theme_root().'/'.get_template().'/app');
 define('__CONTROLLER_PATH' ,__APP_PATH.'/controllers');
 define('__VIEW_PATH' ,__APP_PATH.'/views');
@@ -25,29 +29,66 @@ if(is_admin()) {
     require_once locate_template('/includes/custom-admin/startup.php');
 }
 
+// Remove jQuery Migrate Script from header and Load jQuery from Google API
+function db_init_load_theme()
+{
+    if (!is_admin()) {
 
-add_action('after_setup_theme', 'true_load_theme_textdomain');
-function true_load_theme_textdomain(){
+        // stop loading wp embed and jquery
+        wp_deregister_script('wp-embed');
+        wp_deregister_script('jquery');  // Bonus: remove jquery too if it's not required
+
+        // Remove WordPress Emoji Without a Plugin
+        // http://labs.jdmdigital.co/plugins/disable-wordpress-emojis/
+        remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+        remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+        remove_action( 'wp_print_styles', 'print_emoji_styles' );
+        remove_action( 'admin_print_styles', 'print_emoji_styles' );
+        remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+        remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+        remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+    }
+}
+add_action('init', 'db_init_load_theme');
+
+
+function db_after_setup_theme()
+{
+    // Remove api.w.org REST API from WordPress header
+    remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
+    remove_action( 'wp_head', 'wp_oembed_add_discovery_links', 10 );
+
+    // -- Hide admin bar at frontend --
+//    if (!current_user_can('administrator') && !is_admin()) {
+    if (!is_admin()) {
+        show_admin_bar(false);
+    }
+
+    // -- Load language domain --
     load_theme_textdomain( 'bst', get_template_directory() . '/languages' );
+
 }
+add_action('after_setup_theme', 'db_after_setup_theme');
 
-function themes_dir_add_rewrites() {
-    $theme_name = next(explode('/themes/', get_stylesheet_directory()));
-    global $wp_rewrite;
-    $new_non_wp_rules = array(
-        'css/(.*)'       => 'wp-content/themes/'. $theme_name . '/assets/css/$1',
-        'js/(.*)'        => 'wp-content/themes/'. $theme_name . '/assets/js/$1',
-        'images/wordpress-urls-rewrite/(.*)'    => 'wp-content/themes/'. $theme_name . '/images/wordpress-urls-rewrite/$1',
-    );
 
-//    echo "<pre>";
-//    print_r($new_non_wp_rules);
-//    echo "</pre>";
-//    exit();
 
-    $wp_rewrite->non_wp_rules += $new_non_wp_rules;
-}
-add_action('generate_rewrite_rules', 'themes_dir_add_rewrites');
+//function themes_dir_add_rewrites() {
+//    $theme_name = next(explode('/themes/', get_stylesheet_directory()));
+//    global $wp_rewrite;
+//    $new_non_wp_rules = array(
+//        'css/(.*)'       => 'wp-content/themes/'. $theme_name . '/assets/css/$1',
+//        'js/(.*)'        => 'wp-content/themes/'. $theme_name . '/assets/js/$1',
+//        'images/wordpress-urls-rewrite/(.*)'    => 'wp-content/themes/'. $theme_name . '/images/wordpress-urls-rewrite/$1',
+//    );
+//
+////    echo "<pre>";
+////    print_r($new_non_wp_rules);
+////    echo "</pre>";
+////    exit();
+//
+//    $wp_rewrite->non_wp_rules += $new_non_wp_rules;
+//}
+//add_action('generate_rewrite_rules', 'themes_dir_add_rewrites');
 
 ///**
 // * This plugin will fix the problem where next/previous of page number buttons are broken on list
