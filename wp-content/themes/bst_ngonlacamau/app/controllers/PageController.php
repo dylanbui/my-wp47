@@ -19,18 +19,6 @@ class PageController extends Controller
     }
 
     public function gioiThieuAction() {
-
-        // -- Get current menu item click for active menu item --
-//        $menu = wp_get_nav_menu_items("primary",array(
-//            'posts_per_page' => -1,
-//            'meta_key' => '_menu_item_object_id',
-//            'meta_value' => $this->queried_object->ID // the currently displayed post
-//        ));
-//        echo "<pre>";
-//        print_r($menu[0]);
-//        echo "</pre>";
-//        exit();
-
         return $this->renderView('wp/page/gioi-thieu');
     }
 

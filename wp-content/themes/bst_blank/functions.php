@@ -276,7 +276,6 @@ function before_load_template() {
     exit();
 
 }
-
 //add_action( "template_redirect", "before_load_template");
 //https://markjaquith.wordpress.com/2014/02/19/template_redirect-is-not-for-loading-templates/
 //https://codereview.stackexchange.com/questions/101364/simple-router-class
@@ -314,7 +313,6 @@ function my_template_include( $original_template )
         $controller = new SingleController();
         echo $controller->chiTietAction($id);
         exit();
-//        echo "name: $slug id: $id";
     });
 
 //    $router->basic('/blog/(:name)/(:num)', function($product_type, $id){

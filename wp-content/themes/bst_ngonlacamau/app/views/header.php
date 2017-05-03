@@ -83,12 +83,13 @@
              * http://bootsnipp.com/snippets/oPWaZ => multi level menu
              * http://www.danielauener.com/current-wp_nav_menu-item-wordpress/
              $menu = wp_get_nav_menu_items($menu_id,array(
-                'posts_per_page' => -1,
-                'meta_key' => '_menu_item_object_id',
-                'meta_value' => $post->ID // the currently displayed post
-             ));
-             var_dump($menu[0]->ID);
+   'posts_per_page' => -1,
+   'meta_key' => '_menu_item_object_id',
+   'meta_value' => $post->ID // the currently displayed post
+));
+var_dump($menu[0]->ID);
              * */
+
 
             wp_nav_menu( array(
                     'theme_location'    => 'navbar-right',

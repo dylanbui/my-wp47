@@ -49,13 +49,6 @@ class SingleController extends Controller
 
     public function chiTietAction($id)
     {
-        $menu = wp_get_nav_menu_items("primary");
-        echo "<pre>";
-        print_r($menu);
-        echo "</pre>";
-        exit();
-
-
         $my_args = array(
             'post_type' => 'newsletter',
             'p' => $id
