@@ -17,6 +17,12 @@ class PageController extends Controller
         // -- Start get wordpress page --
         the_post();
         $strPage = lowerCamelcase($this->queried_object->post_name).'Action';
+
+        // -- Xu ly page khong can template --
+        if (!function_exists($strPage)) {
+            return $this->renderView('wp/page/default');
+        }
+
         return $this->{$strPage}(); //lowerCamelcase($this->queried_object->post_name);
     }
 
