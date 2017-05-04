@@ -15,7 +15,7 @@
         <div class="col-xs-12 col-sm-8">
 
             <div id="content" role="main">
-                <h1>My layout</h1>
+<!--                <h1>My layout</h1>-->
                 <?php echo $main_content; ?>
             </div><!-- /#content -->
 

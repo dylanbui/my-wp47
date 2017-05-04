@@ -57,10 +57,12 @@
         <ul>
             <?php
             // -- Chi lay 5 bai gan day --
-            $args = array('numberposts' => '5');
+            $args = array('post_type' => 'bai-viet', 'numberposts' => '5');
+
             $recent_posts = wp_get_recent_posts( $args );
             foreach( $recent_posts as $recent ){
-                echo '<li><a href="' . get_permalink($recent["ID"]) . '">' .   $recent["post_title"].'</a> </li> ';
+                echo '<li><a href="' . get_permalink($recent["ID"]) . '">'.$recent["post_title"].'</a> </li> ';
+                echo '<li><a href="' . define_permalink($recent["ID"] ,$recent["post_title"]) . '">'.$recent["post_title"].'</a> </li> ';
             }
             // -- Must to reset query --
             wp_reset_query();
@@ -72,7 +74,7 @@
         <div class="well">
             <?php
 
-            $taxName = "article-directory";
+            $taxName = "danh-muc";
             $arg = array(
                 'taxonomy' => $taxName,
 //                'parent' => 0,

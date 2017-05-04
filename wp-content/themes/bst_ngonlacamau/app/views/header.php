@@ -45,38 +45,47 @@
             <?php
             wp_nav_menu( array(
                     'theme_location'    => 'navbar-left',
-                    'depth'             => 2,
+                    'depth'             => 3,
                     'menu_class'        => 'nav navbar-nav',
                     'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
                     'walker'            => new wp_bootstrap_navwalker())
             );
             ?>
-            <?php get_template_part('templates/navbar-search'); ?>
+            <?php echo $this->fetch('navbar-search'); ?>
 
-            <div class="menu-primary-container">
-                <ul id="menu-primary" class="nav navbar-nav navbar-right">
-                    <li id="menu-item-34" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34">
-                        <a title="Giới thiệu" href="http://demo-wordpress.dev/gioi-thieu/">Giới thiệu</a>
-                    </li>
-                    <li id="menu-item-33" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-33">
-                        <a title="Liên Hệ" href="http://demo-wordpress.dev/lien-he/">Liên Hệ</a>
-                    </li>
-                    <li id="menu-item-35" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-35">
-                        <a title="Sample Page" href="http://demo-wordpress.dev/hoi-dap/">Hỏi đáp</a>
-                    </li>
-                    <li id="menu-item-64" class="menu-item menu-item-type-taxonomy menu-item-object-article-directory menu-item-has-children menu-item-64 dropdown">
-                        <a title="Công nghệ" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Công nghệ <span class="caret"></span></a>
-                        <ul role="menu" class=" dropdown-menu">
-                            <li id="menu-item-65" class="menu-item menu-item-type-taxonomy menu-item-object-article-directory menu-item-has-children menu-item-65 dropdown">
-                                <a title="Điện thoại" href="http://demo-wordpress.dev/article-directory/cong-nghe/dien-thoai/">Điện thoại</a>
-                            </li>
-                            <li id="menu-item-67" class="menu-item menu-item-type-taxonomy menu-item-object-article-directory menu-item-67">
-                                <a title="Máy tính bảng" href="http://demo-wordpress.dev/article-directory/cong-nghe/may-tinh-bang/">Máy tính bảng</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+<!--
+        $menu = wp_get_nav_menu_items("primary");
+        echo "<pre>";
+        print_r($menu);
+        echo "</pre>";
+        exit();
+-->
+
+<!--            Menu tu code -->
+<!--            <div class="menu-primary-container">-->
+<!--                <ul id="menu-primary" class="nav navbar-nav navbar-right">-->
+<!--                    <li id="menu-item-34" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34">-->
+<!--                        <a title="Giới thiệu" href="http://demo-wordpress.dev/gioi-thieu/">Giới thiệu</a>-->
+<!--                    </li>-->
+<!--                    <li id="menu-item-33" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-33">-->
+<!--                        <a title="Liên Hệ" href="http://demo-wordpress.dev/lien-he/">Liên Hệ</a>-->
+<!--                    </li>-->
+<!--                    <li id="menu-item-35" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-35">-->
+<!--                        <a title="Sample Page" href="http://demo-wordpress.dev/hoi-dap/">Hỏi đáp</a>-->
+<!--                    </li>-->
+<!--                    <li id="menu-item-64" class="menu-item menu-item-type-taxonomy menu-item-object-article-directory menu-item-has-children menu-item-64 dropdown">-->
+<!--                        <a title="Công nghệ" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Công nghệ <span class="caret"></span></a>-->
+<!--                        <ul role="menu" class=" dropdown-menu">-->
+<!--                            <li id="menu-item-65" class="menu-item menu-item-type-taxonomy menu-item-object-article-directory menu-item-has-children menu-item-65 dropdown">-->
+<!--                                <a title="Điện thoại" href="http://demo-wordpress.dev/article-directory/cong-nghe/dien-thoai/">Điện thoại</a>-->
+<!--                            </li>-->
+<!--                            <li id="menu-item-67" class="menu-item menu-item-type-taxonomy menu-item-object-article-directory menu-item-67">-->
+<!--                                <a title="Máy tính bảng" href="http://demo-wordpress.dev/article-directory/cong-nghe/may-tinh-bang/">Máy tính bảng</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
 
             <?php
             /* http://bootsnipp.com/snippets/mvWZz
@@ -93,7 +102,7 @@ var_dump($menu[0]->ID);
 
             wp_nav_menu( array(
                     'theme_location'    => 'navbar-right',
-                    'depth'             => 2,
+                    'depth'             => 3,
                     'menu_class'        => 'nav navbar-nav navbar-right',
                     'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
                     'walker'            => new wp_bootstrap_navwalker())

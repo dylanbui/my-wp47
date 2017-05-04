@@ -23,6 +23,8 @@ require_once locate_template('/includes/library/router.php');
 require_once locate_template('/includes/library/controller.php');
 require_once locate_template('/includes/library/view.php');
 
+require_once locate_template('/app/controllers/DefineShortcodeController.php');
+
 require_once locate_template('/app/controllers/HomeController.php');
 require_once locate_template('/app/controllers/PageController.php');
 require_once locate_template('/app/controllers/SingleController.php');
@@ -92,6 +94,11 @@ function remove_api () {
 }
 add_action( 'after_setup_theme', 'remove_api' );
 
+
+function define_permalink($id, $title) {
+    return db_site_url(str2url($title).'-post'.$id.'.html');
+}
+
 ///**
 // * This plugin will fix the problem where next/previous of page number buttons are broken on list
 // * of posts in a category when the custom permalink string is:
@@ -134,12 +141,17 @@ add_action( 'after_setup_theme', 'remove_api' );
 //}
 //add_action( 'pre_get_posts', 'wpa89392_homepage_products' );
 
+
 //https://markjaquith.wordpress.com/2014/02/19/template_redirect-is-not-for-loading-templates/
 //https://codereview.stackexchange.com/questions/101364/simple-router-class
 
 // Ham nay chay sau ca : template_redirect. Xac dinh loai file nao khi chay, index.php, archive.php, page.php
 function my_template_include( $original_template )
 {
+    // -- Add shortcode --
+    $defineShortcodeController = new DefineShortcodeController();
+    $defineShortcodeController->run();
+
     $controller = null;
     $content = null;
     $queried_object = get_queried_object();
@@ -149,7 +161,7 @@ function my_template_include( $original_template )
         $controller = new SingleController();
     } elseif( is_page() ) {
         $controller = new PageController();
-    } elseif(is_archive() || is_search()) {
+    } elseif(is_tag() || is_archive() || is_search()) {
         // -- Include taxonomy, category, tag --
         $controller = new ArchiveController();
     }
@@ -171,6 +183,13 @@ function my_template_include( $original_template )
         echo $controller->chiTietAction($id);
         exit();
     });
+
+    $router->basic('/(:slug)-post(:num).html', function($slug, $id){
+        $controller = new SingleController();
+        echo $controller->chiTietAction($id);
+        exit();
+    });
+
 
 //    $router->basic('/blog/(:name)/(:num)', function($product_type, $id){
 //        echo 'Show product_edit : '.strtolower($product_type).'/'.$id;

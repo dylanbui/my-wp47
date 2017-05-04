@@ -50,7 +50,7 @@ class SingleController extends Controller
     public function chiTietAction($id)
     {
         $my_args = array(
-            'post_type' => 'newsletter',
+            'post_type' => 'bai-viet',
             'p' => $id
         );
 

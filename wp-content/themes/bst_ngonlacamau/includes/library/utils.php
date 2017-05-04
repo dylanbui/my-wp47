@@ -7,6 +7,35 @@ require_once(ABSPATH . "wp-admin" . '/includes/image.php');
 require_once(ABSPATH . "wp-admin" . '/includes/file.php');
 require_once(ABSPATH . "wp-admin" . '/includes/media.php');
 
+if ( ! function_exists('df'))
+{
+    // Check varible existed or not
+    function df(&$value, $default = "", $allowZero = false)
+    {
+        if ($allowZero)
+            return !isset($value) ? $default : $value;
+
+        return empty($value) ? $default : $value;
+    }
+}
+
+if ( ! function_exists('h'))
+{
+    function h(&$str)
+    {
+        return isset($str) ? htmlspecialchars($str) : '';
+    }
+}
+
+if ( ! function_exists('xh'))
+{
+    function xh(&$str)
+    {
+        // Chu y : Khi su dung PDO thi no tu dong encode html khi insert, ke ca textarea cung bi thay the \n = <br/>
+        return empty($str) ? '' : nl2br(htmlspecialchars($str));
+    }
+}
+
 if( ! ( function_exists( 'db_site_url' ) ) ) {
     function db_site_url($uri = '')
     {

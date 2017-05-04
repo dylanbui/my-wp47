@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function run() {
 
         $my_args = array(
-            'post_type' => 'newsletter',
+            'post_type' => 'bai-viet',
             'posts_per_page' => 4, // Hien thi 4 bai moi nhat
             // 'order' => 'DESC'
         );

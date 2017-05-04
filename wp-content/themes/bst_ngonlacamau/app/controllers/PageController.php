@@ -14,6 +14,8 @@ class PageController extends Controller
     }
 
     public function run() {
+        // -- Start get wordpress page --
+        the_post();
         $strPage = lowerCamelcase($this->queried_object->post_name).'Action';
         return $this->{$strPage}(); //lowerCamelcase($this->queried_object->post_name);
     }
