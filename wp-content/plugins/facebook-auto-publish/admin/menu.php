@@ -21,7 +21,7 @@ function xyz_fbap_menu()
 	add_menu_page('Facebook Auto Publish - Manage settings', 'Facebook Auto Publish', 'manage_options', 'facebook-auto-publish-settings', 'xyz_fbap_settings');
 	add_submenu_page('facebook-auto-publish-settings', 'Facebook Auto Publish - Manage settings', ' Settings', 'manage_options', 'facebook-auto-publish-settings' ,'xyz_fbap_settings'); // 8 for admin
 	add_submenu_page('facebook-auto-publish-settings', 'Facebook Auto Publish - Logs', 'Logs', 'manage_options', 'facebook-auto-publish-log' ,'xyz_fbap_logs');
-	add_submenu_page('facebook-auto-publish-settings', 'Facebook Auto Publish - About', 'About', 'manage_options', 'facebook-auto-publish-about' ,'xyz_fbap_about'); // 8 for admin
+//	add_submenu_page('facebook-auto-publish-settings', 'Facebook Auto Publish - About', 'About', 'manage_options', 'facebook-auto-publish-about' ,'xyz_fbap_about'); // 8 for admin
 }
 
 
@@ -32,9 +32,9 @@ function xyz_fbap_settings()
 	$_POST = xyz_trim_deep($_POST);
 	$_GET = xyz_trim_deep($_GET);
 	
-	require( dirname( __FILE__ ) . '/header.php' );
+//	require( dirname( __FILE__ ) . '/header.php' );
 	require( dirname( __FILE__ ) . '/settings.php' );
-	require( dirname( __FILE__ ) . '/footer.php' );
+//	require( dirname( __FILE__ ) . '/footer.php' );
 }
 
 
@@ -54,9 +54,9 @@ function xyz_fbap_logs()
 	$_POST = xyz_trim_deep($_POST);
 	$_GET = xyz_trim_deep($_GET);
 
-	require( dirname( __FILE__ ) . '/header.php' );
+//	require( dirname( __FILE__ ) . '/header.php' );
 	require( dirname( __FILE__ ) . '/logs.php' );
-	require( dirname( __FILE__ ) . '/footer.php' );
+//	require( dirname( __FILE__ ) . '/footer.php' );
 }
 
 ?>
