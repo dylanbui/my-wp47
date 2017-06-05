@@ -19,6 +19,11 @@ class DefineShortcodeController extends Controller
         add_shortcode("answer_form", array($this, "displayAnswerForm"));
     }
 
+    public function displayAnswerForm()
+    {
+        return $this->view->fetch('wp/shortcode/answerForm');
+    }
+
     // Shortcode su dng tham so
     // $args => mang 2 chieu the hien tham so
     // $content => noi dung giua 2 tag shortcode
@@ -41,33 +46,9 @@ class DefineShortcodeController extends Controller
         return $this->view->fetch('wp/shortcode/displayGooglemap', array("args" => $args));
     }
 
-    // $args = array( "width" => '940', "height" => '300', "src" => '');
-    // [youtube_embed src="link_youtube"]
-    public function displayYoutube_bak($args, $content)
+    // [youtube_embed id="" or url="link"]
+    function displayYoutube( $attr )
     {
-        if (!empty($content))
-            $args['src'] = $content;
-
-        $args['src'] = df($args['src'], '');
-        $args['width'] = df($args['width'], '100%');
-        $args['height'] = df($args['height'], '500px');
-
-        return $this->view->fetch('wp/shortcode/displayYoutube', array("args" => $args));
-    }
-
-    public function displayAnswerForm()
-    {
-        return $this->view->fetch('wp/shortcode/answerForm');
-    }
-
-
-    /**
-     * shortcode function
-     *
-     * @since 0.1
-     * @use [youtube-white-label id=""]
-     */
-    function displayYoutube( $attr ) {
         global $content_width;
 
         extract( shortcode_atts( array(
@@ -92,16 +73,10 @@ class DefineShortcodeController extends Controller
             'fullscreen'		=> '1',
         ), $attr ) );
 
-//        if ( !empty( $autosize ) && $autosize == '1' )
-//            self::$white_label_script = true;
+        $height	= str_replace( array( '%', 'em', 'px' ), '', $height);
+        $width	= str_replace( array( '%', 'em', 'px' ), '', $width);
 
-        $height	= str_replace( array( '%', 'em', 'px' ), '', $height );
-        $width	= str_replace( array( '%', 'em', 'px' ), '', $width  );
-
-
-
-        static $counter = 1;
-
+        static $counter = 0;
         $iframe = '';
 
         if (empty($id)) {
@@ -111,69 +86,69 @@ class DefineShortcodeController extends Controller
 
         if ( !empty( $id ) ) {
 
-            $iframe .= '<iframe id="youtube-' . absint( $counter ) . '" type="text/html" ';
-
-            if ( !empty( $autosize ) && $autosize == '1' )
-                $iframe .= 'class="autosize" ';
-
             $src = is_ssl() ? 'http' : 'https';
 
-            $iframe .= 'src="' . $src . '://www.youtube.com/embed/' . esc_attr( $id ) . '?';
+            $src .= '://www.youtube.com/embed/' . esc_attr( $id ) . '?';
 
             /* Branding option must be first in line */
             if ( $branding != '' )
-                $iframe .= '&amp;modestbranding=' . $branding;
+                $src .= '&amp;modestbranding=' . $branding;
 
             if ( $autohide != '' )
-                $iframe .= '&amp;autohide=' . $autohide;
+                $src .= '&amp;autohide=' . $autohide;
 
             if ( $autoplay != '' && $autoplay == '1' )
-                $iframe .= '&amp;autoplay=' . $autoplay;
+                $src .= '&amp;autoplay=' . $autoplay;
 
             if ( $controls != '' )
-                $iframe .= '&amp;controls=' . $controls;
+                $src .= '&amp;controls=' . $controls;
 
             if ( $hd != '' )
-                $iframe .= '&amp;hd=' . $hd;
+                $src .= '&amp;hd=' . $hd;
 
             if ( $rel != '' )
-                $iframe .= '&amp;rel=' . $rel;
+                $src .= '&amp;rel=' . $rel;
 
             if ( $showinfo == '1' )
-                $iframe .= '&amp;showinfo=' . $showinfo;
+                $src .= '&amp;showinfo=' . $showinfo;
 
             if ( $border != '' )
-                $iframe .= '&amp;border=' . $border;
+                $src .= '&amp;border=' . $border;
 
             if ( $cc != '' )
-                $iframe .= '&amp;cc_load_policy=' . $cc;
+                $src .= '&amp;cc_load_policy=' . $cc;
 
             if ( $colorone != '' )
-                $iframe .= '&amp;color1=' . $colorone;
+                $src .= '&amp;color1=' . $colorone;
 
             if ( $colortwo != '' )
-                $iframe .= '&amp;color2=' . $colortwo;
+                $src .= '&amp;color2=' . $colortwo;
 
             if ( $fullscreen != '' )
-                $iframe .= '&amp;fullscreen=' . $fullscreen;
+                $src .= '&amp;fullscreen=' . $fullscreen;
 
             if ( !empty( $disablekb ) && $disablekb != '0' )
-                $iframe .= '&amp;disablekb=' . $disablekb;
+                $src .= '&amp;disablekb=' . $disablekb;
 
             if ( $showinfo == '1' && $branding == '0' )
-                $iframe .= '&amp;title=';
+                $src .= '&amp;title=';
 
-            $iframe .= '" ';
+            $src .= '" ';
+
+            if ( !empty( $autosize ) && $autosize == '1' )
+                $src .= 'class="autosize" ';
 
             $height = ( isset( $height ) && ( !empty( $height ) || $height != '' ) ) ? $height : ( $content_width / 1.77 );
             $width = ( isset( $width ) && ( !empty( $width ) || $width != '' ) ) ? $width : $content_width;
 
-            $iframe .= 'style="border:0; height:' . esc_attr( absint( $height ) ) . 'px; width:' . esc_attr( absint( $width ) ) . 'px">';
-            $iframe .= '</iframe>';
-
-            $iframe = '<p style="text-align: '.$align.';">'.$iframe.'</p>';
-
             $counter++;
+            $args['src'] = $src;
+            $args['width'] = $width;
+            $args['height'] = $height;
+            $args['align'] = $align;
+            $args['counter'] = $counter;
+
+            $iframe = $this->view->fetch('wp/shortcode/displayYoutube', array("args" => $args));
         }
         return wpautop( $iframe );
     }
@@ -184,7 +159,7 @@ class DefineShortcodeController extends Controller
     preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $url, $matches );
      *
      */
-    function strip_youtube_url( $url ) {
+    private function strip_youtube_url($url) {
         $id_match = '[0-9a-zA-Z\-_]+';
         if ( preg_match( '|https?://(www\.)?youtube\.com/(watch)?\?.*v=(' . $id_match . ')|', $url, $matches ) )
             $id = $matches[3];
