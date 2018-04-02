@@ -96,7 +96,8 @@ add_action( 'after_setup_theme', 'remove_api' );
 
 
 function define_permalink($id, $title) {
-    return db_site_url(str2url($title).'-post'.$id.'.html');
+    return rtrim(get_the_permalink($id) ,'/').'-post'.$id.'.html';
+//    return db_site_url(str2url($title).'-post'.$id.'.html');
 }
 
 ///**
