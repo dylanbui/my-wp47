@@ -140,6 +140,12 @@ add_action( 'after_setup_theme', 'remove_api' );
 // Ham nay chay sau ca : template_redirect. Xac dinh loai file nao khi chay, index.php, archive.php, page.php
 function my_template_include( $original_template )
 {
+    echo "<pre>";
+    print_r($original_template);
+    echo "</pre>";
+    exit();
+
+
     $controller = null;
     $content = null;
     $queried_object = get_queried_object();
@@ -177,6 +183,7 @@ function my_template_include( $original_template )
 //    });
 
     $router->match($_SERVER);
+
 
 //    echo $original_template;
 //    $postObject = get_queried_object();
