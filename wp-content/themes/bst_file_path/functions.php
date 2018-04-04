@@ -18,10 +18,10 @@ define('__APP_PATH' ,get_theme_root().'/'.get_template().'/app');
 define('__CONTROLLER_PATH' ,__APP_PATH.'/controllers');
 define('__VIEW_PATH' ,__APP_PATH.'/views');
 
-require_once locate_template('/includes/library/utils.php');
-require_once locate_template('/includes/library/router.php');
-require_once locate_template('/includes/library/controller.php');
-require_once locate_template('/includes/library/view.php');
+require_once locate_template('/functions/library/utils.php');
+require_once locate_template('/functions/library/router.php');
+require_once locate_template('/functions/library/controller.php');
+require_once locate_template('/functions/library/view.php');
 
 //require_once locate_template('/app/controllers/DefineShortcodeController.php');
 //
@@ -31,10 +31,10 @@ require_once locate_template('/includes/library/view.php');
 //require_once locate_template('/app/controllers/ArchiveController.php');
 
 //require_once locate_template('/includes/library/common.php');
-require_once locate_template('/includes/startup.php');
+require_once locate_template('/functions/startup.php');
 
 if(is_admin()) {
-    require_once locate_template('/includes/custom-admin/startup.php');
+    require_once locate_template('/functions/custom-admin/startup.php');
 }
 
 add_action('after_setup_theme', 'true_load_theme_textdomain');
@@ -219,10 +219,10 @@ function my_template_include( $original_template )
 //    echo "</pre>";
 //    exit();
 
-    echo "<pre>";
-    print_r($original_template);
-    echo "</pre>";
-    exit();
+//    echo "<pre>";
+//    print_r($original_template);
+//    echo "</pre>";
+//    exit();
 
     return $original_template;
 }

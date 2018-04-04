@@ -1,12 +1,12 @@
 <?php
 
-require_once locate_template('/includes/functions/cleanup.php');
-require_once locate_template('/includes/functions/setup.php');
-require_once locate_template('/includes/functions/enqueues.php'); // Load css, js
-require_once locate_template('/includes/functions/navbar.php');
-require_once locate_template('/includes/functions/widgets.php');
-require_once locate_template('/includes/functions/search.php');
-require_once locate_template('/includes/functions/feedback.php');
+require_once locate_template('/functions/functions/cleanup.php');
+require_once locate_template('/functions/functions/setup.php');
+require_once locate_template('/functions/functions/enqueues.php'); // Load css, js
+require_once locate_template('/functions/functions/navbar.php');
+require_once locate_template('/functions/functions/widgets.php');
+require_once locate_template('/functions/functions/search.php');
+require_once locate_template('/functions/functions/feedback.php');
 
 // Add Facebook meta to post or page detail
 //Lets add Open Graph Meta Info
