@@ -2,35 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02d09491-c209-4e04-b511-5ec88d7ff6e0" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/_OLD_includes/footer.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/_OLD_includes/header.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/_OLD_includes/loops/comments.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/_OLD_includes/loops/content-none.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/_OLD_includes/loops/content-page.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/_OLD_includes/loops/content-search.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/_OLD_includes/loops/content-single.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/_OLD_includes/loops/content.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/_OLD_includes/navbar-search.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/_OLD_includes/sidebar.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/custom-admin/_disable_wp_notifications.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/custom-admin/startup.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/functions/cleanup.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/functions/enqueues.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/functions/feedback.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/functions/navbar.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/functions/page.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/functions/search.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/functions/setup.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/functions/widgets.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/library/common.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/library/controller.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/library/router.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/library/template.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/library/utils.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/library/view.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/startup.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/category.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/page.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/search.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/single.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/404.php" afterPath="$PROJECT_DIR$/wp-content/themes/bst_file_path/404.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/functions.php" afterPath="$PROJECT_DIR$/wp-content/themes/bst_file_path/functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/functions/custom-admin/startup.php" afterPath="$PROJECT_DIR$/wp-content/themes/bst_file_path/functions/custom-admin/startup.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/functions/startup.php" afterPath="$PROJECT_DIR$/wp-content/themes/bst_file_path/functions/startup.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/bst_file_path/index.php" afterPath="$PROJECT_DIR$/wp-content/themes/bst_file_path/index.php" />
     </list>
     <ignored path="wordpress47.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="functions.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="207" column="16" selection-start-line="207" selection-start-column="16" selection-end-line="207" selection-end-column="16" />
+            <state relative-caret-position="1213">
+              <caret line="268" column="27" selection-start-line="268" selection-start-column="27" selection-end-line="268" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -64,8 +45,43 @@
       <file leaf-file-name="startup.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/functions/startup.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+            <state relative-caret-position="-137">
+              <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="content-home.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/contents/content-home.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="content.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/contents/content.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="58" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="58" />
+              <folding>
+                <element signature="e#6#917#0#PHP" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#footer#0;n#article#0;n#!!top" expanded="true" />
+                <element signature="e#1818#1824#0#HTML" expanded="true" />
+                <element signature="e#1950#1956#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="startup.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/functions/custom-admin/startup.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -74,8 +90,53 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="390">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="404.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/404.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="general-template.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-includes/general-template.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="439">
+              <caret line="158" column="0" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
+              <folding>
+                <marker date="1479696390000" expanded="true" signature="28836:28849" ph="..." />
+                <marker date="1479696390000" expanded="true" signature="55477:55659" ph="SELECT YEAR(... " />
+                <marker date="1479696390000" expanded="true" signature="56551:56686" ph="SELECT YEAR(... " />
+                <marker date="1479696390000" expanded="true" signature="57451:57695" ph="SELECT YEAR(... " />
+                <marker date="1479696390000" expanded="true" signature="58666:58904" ph="SELECT DISTI... " />
+                <marker date="1479696390000" expanded="true" signature="60308:60366" ph="SELECT * FRO... ${$wpdb-&gt;posts}" />
+                <marker date="1479696390000" expanded="true" signature="62669:62764" ph="SELECT 1 as ${$wpdb-&gt;posts}" />
+                <marker date="1479696390000" expanded="true" signature="64002:64216" ph="SELECT MONTH... " />
+                <marker date="1479696390000" expanded="true" signature="64245:64476" ph="SELECT MONTH... " />
+                <marker date="1479696390000" expanded="true" signature="64652:64793" ph="..." />
+                <marker date="1479696390000" expanded="true" signature="64787:64793" ph="..." />
+                <marker date="1479696390000" expanded="true" signature="65238:65244" ph="..." />
+                <marker date="1479696390000" expanded="true" signature="66047:66053" ph="..." />
+                <marker date="1479696390000" expanded="true" signature="66146:66381" ph="SELECT DISTI... ${$wpdb-&gt;posts}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="content-single.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/loops/content-single.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="7" column="59" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -115,8 +176,17 @@
         <option value="$PROJECT_DIR$/wp-content/plugins/example-plugin/readme.txt" />
         <option value="$PROJECT_DIR$/wp-content/themes/bst_mvc/functions.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/bst_ngonlacamau/functions.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/bst_file_path/functions/custom-admin/startup.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/loops/content-single.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/bst_file_path/page.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/loops/content.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/contents/content.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/contents/content-single.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/bst_file_path/index.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/contents/content-home.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/bst_file_path/functions/startup.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/bst_file_path/functions.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/bst_file_path/404.php" />
       </list>
     </option>
   </component>
@@ -131,10 +201,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="51" />
+    <option name="x" value="48" />
     <option name="y" value="23" />
-    <option name="width" value="1229" />
-    <option name="height" value="1001" />
+    <option name="width" value="1392" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -252,6 +322,62 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="bst_ngonlacamau" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wordpress47" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wordpress47" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bst_ngonlacamau" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wordpress47" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wordpress47" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="bst_file_path" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -304,6 +430,36 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="includes" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="contents" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wordpress47" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wordpress47" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bst_file_path" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="functions" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -334,7 +490,33 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="library" />
+              <option name="myItemId" value="custom-admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wordpress47" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wordpress47" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bst_file_path" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="_BAK" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -350,11 +532,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/contents" />
       <recent name="$PROJECT_DIR$/wp-content/plugins" />
       <recent name="$PROJECT_DIR$/wp-content/themes/bst_ngonlacamau/app/views/wp/page" />
       <recent name="$PROJECT_DIR$/wp-content/themes/bst_blank/app/views" />
       <recent name="$PROJECT_DIR$/wp-content/themes/bst_blank/app/views/wp" />
-      <recent name="$PROJECT_DIR$/wp-content/themes/bst_blank/app/controllers" />
     </key>
   </component>
   <component name="RunManager">
@@ -432,18 +614,20 @@
       <workItem from="1522690952394" duration="430000" />
       <workItem from="1522836462406" duration="2852000" />
       <workItem from="1522863934429" duration="1079000" />
+      <workItem from="1522895754231" duration="11669000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36493000" />
+    <option name="totallyTimeSpent" value="48162000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="51" y="23" width="1229" height="1001" extended-state="6" />
+    <frame x="48" y="23" width="1392" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23420388" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23777778" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -451,7 +635,6 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -478,106 +661,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_blank/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_blank/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4048">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst/archive.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst/templates/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bones/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="292" column="0" selection-start-line="292" selection-start-column="0" selection-end-line="292" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-includes/general-template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2415">
-          <caret line="166" column="13" selection-start-line="166" selection-start-column="13" selection-end-line="166" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-includes/template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9030">
-          <caret line="607" column="0" selection-start-line="607" selection-start-column="0" selection-end-line="607" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_ngonlacamau/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bones/archive.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_mvc/app/views/wp/archive.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_mvc/app/controllers/PageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_mvc/app/controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_mvc/app/views/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_mvc/app/views/wp/home.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_mvc/app/views/sidebar.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -619,25 +702,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_mvc/includes/library/common.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-257">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-includes/query.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="45" column="1" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -754,38 +822,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_ngonlacamau/app/controllers/SingleController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="742">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_ngonlacamau/includes/library/utils.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="79" column="13" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_ngonlacamau/app/views/wp/single-newsletter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_ngonlacamau/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="25" column="79" selection-start-line="0" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/page.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -801,7 +841,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1185">
           <caret line="84" column="56" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -809,15 +848,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="17" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -825,7 +855,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -833,22 +862,223 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/single.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_ngonlacamau/app/views/wp/single-newsletter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/functions/custom-admin/startup.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-includes/query.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+          <folding>
+            <marker date="1472624501000" expanded="true" signature="21660:21797" ph="SELECT post_... ${$wpdb-&gt;postmeta}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_ngonlacamau/app/controllers/SingleController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_ngonlacamau/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="155" column="23" selection-start-line="155" selection-start-column="23" selection-end-line="155" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/loops/content-single.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="7" column="59" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/navbar-search.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <marker date="1522895665000" expanded="true" signature="381:535" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_ngonlacamau/app/controllers/DefineShortcodeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-includes/template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="680" column="5" selection-start-line="680" selection-start-column="5" selection-end-line="680" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/loops/content.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="58" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="58" />
+          <folding>
+            <element signature="e#6#917#0#PHP" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#footer#0;n#article#0;n#!!top" expanded="true" />
+            <element signature="e#1818#1824#0#HTML" expanded="true" />
+            <element signature="e#1950#1956#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/page.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/_BAK/category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="12" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/contents/content-single.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="18" selection-start-line="0" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#55#0#PHP" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#header#0;n#article#0;n#!!top" expanded="true" />
+            <element signature="e#687#693#0#HTML" expanded="true" />
+            <element signature="e#822#828#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/contents/content.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="58" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="58" />
+          <folding>
+            <element signature="e#6#917#0#PHP" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#footer#0;n#article#0;n#!!top" expanded="true" />
+            <element signature="e#1818#1824#0#HTML" expanded="true" />
+            <element signature="e#1950#1956#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/functions/startup.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        <state relative-caret-position="-137">
+          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-includes/general-template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="158" column="0" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
+          <folding>
+            <marker date="1479696390000" expanded="true" signature="28836:28849" ph="..." />
+            <marker date="1479696390000" expanded="true" signature="55477:55659" ph="SELECT YEAR(... " />
+            <marker date="1479696390000" expanded="true" signature="56551:56686" ph="SELECT YEAR(... " />
+            <marker date="1479696390000" expanded="true" signature="57451:57695" ph="SELECT YEAR(... " />
+            <marker date="1479696390000" expanded="true" signature="58666:58904" ph="SELECT DISTI... " />
+            <marker date="1479696390000" expanded="true" signature="60308:60366" ph="SELECT * FRO... ${$wpdb-&gt;posts}" />
+            <marker date="1479696390000" expanded="true" signature="62669:62764" ph="SELECT 1 as ${$wpdb-&gt;posts}" />
+            <marker date="1479696390000" expanded="true" signature="64002:64216" ph="SELECT MONTH... " />
+            <marker date="1479696390000" expanded="true" signature="64245:64476" ph="SELECT MONTH... " />
+            <marker date="1479696390000" expanded="true" signature="64652:64793" ph="..." />
+            <marker date="1479696390000" expanded="true" signature="64787:64793" ph="..." />
+            <marker date="1479696390000" expanded="true" signature="65238:65244" ph="..." />
+            <marker date="1479696390000" expanded="true" signature="66047:66053" ph="..." />
+            <marker date="1479696390000" expanded="true" signature="66146:66381" ph="SELECT DISTI... ${$wpdb-&gt;posts}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/404.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="207" column="16" selection-start-line="207" selection-start-column="16" selection-end-line="207" selection-end-column="16" />
+        <state relative-caret-position="1213">
+          <caret line="268" column="27" selection-start-line="268" selection-start-column="27" selection-end-line="268" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/bst_file_path/includes/contents/content-home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
           <folding />
         </state>
       </provider>

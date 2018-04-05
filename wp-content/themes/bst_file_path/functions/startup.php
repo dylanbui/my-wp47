@@ -8,6 +8,9 @@ require_once locate_template('/functions/functions/widgets.php');
 require_once locate_template('/functions/functions/search.php');
 require_once locate_template('/functions/functions/feedback.php');
 
+global $view;
+$view = new View(__VIEW_PATH);
+
 // Add Facebook meta to post or page detail
 //Lets add Open Graph Meta Info
 function insert_fb_in_head()

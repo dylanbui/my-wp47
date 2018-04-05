@@ -185,6 +185,21 @@ function my_template_include( $original_template )
     });
 
     $router->basic('/(:slug)-post(:num).html', function($slug, $id){
+
+        $my_args = array(
+            //'post_type' => 'bai-viet',
+            'p' => $id
+        );
+
+        global $wp_query;
+        $wp_query = new WP_Query($my_args);
+
+//        if ($my_query->have_posts()) {
+//            $my_query->the_post();
+            // return $this->renderView('wp/single-newsletter', array('my_query' => $my_query));
+//
+//        }
+
         return 'single';
 
 //        echo "<pre>";
@@ -206,9 +221,9 @@ function my_template_include( $original_template )
 
     $file = $router->match($_SERVER);
     if ($file) {
-        echo "<pre>";
-        print_r($file);
-        echo "</pre>";
+//        echo "<pre>";
+//        print_r($file);
+//        echo "</pre>";
         $original_template = str_replace('404', $file, $original_template);
     }
 
@@ -233,3 +248,52 @@ function my_template_include( $original_template )
  */
 add_filter( 'template_include', 'my_template_include' );
 
+function db_get_template_part( $slug, $name = null )
+{
+    if ($name) {
+        get_template_part($slug, $name);
+        return;
+    }
+
+    $page = 'home';
+    $str_func = "dbf_action_for_content_" .$page;
+    if(is_home()) {
+        $page = 'home';
+    } elseif( is_single() ) {
+        $page = 'single';
+    } elseif( is_page() ) {
+        get_template_part($slug, 'page');
+        $page = 'page';
+    } elseif(is_tag() || is_archive() || is_search()) {
+        // -- Include taxonomy, category, tag --
+        $page = 'category';
+    }
+
+    if(function_exists($str_func))
+    {
+        // Run define function
+        $str_func();
+    }
+    get_template_part($slug, $page);
+}
+
+function dbf_action_for_content_home()
+{
+//    echo "<pre>";
+//    print_r('dbf_action_for_content_home');
+//    echo "</pre>";
+    $my_args = array(
+        'post_type' => 'bai-viet',
+        'paged' => get_query_var('paged')
+    );
+
+    echo "<pre>";
+    print_r($my_args);
+    echo "</pre>";
+    exit();
+
+    global $wp_query;
+    $wp_query = new WP_Query($my_args);
+
+
+}

@@ -4,15 +4,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-8">
             <div id="content" role="main">
-                <?php
-//                echo "<pre>";
-//                print_r('includes/contents/content-'. get_post_format());
-//                echo "</pre>";
-
-                db_get_template_part('includes/contents/content');
-
-                ?>
-                <?php //get_template_part('includes/contents/content', get_post_format()); ?>
+                <?php get_template_part('includes/loops/content', 'page'); ?>
             </div><!-- /#content -->
         </div>
 
