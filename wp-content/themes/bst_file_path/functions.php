@@ -37,6 +37,9 @@ if(is_admin()) {
     require_once locate_template('/functions/custom-admin/startup.php');
 }
 
+require_once locate_template('/includes/actions.php');
+require_once locate_template('/includes/shortcodes.php');
+
 add_action('after_setup_theme', 'true_load_theme_textdomain');
 function true_load_theme_textdomain(){
     load_theme_textdomain( 'bst', get_template_directory() . '/languages' );
@@ -156,16 +159,24 @@ function my_template_include( $original_template )
 //    $controller = null;
 //    $content = null;
 //    $queried_object = get_queried_object();
-//    if(is_home()) {
-//        $controller = new HomeController();
-//    } elseif( is_single() ) {
-//        $controller = new SingleController();
-//    } elseif( is_page() ) {
-//        $controller = new PageController();
-//    } elseif(is_tag() || is_archive() || is_search()) {
-//        // -- Include taxonomy, category, tag --
-//        $controller = new ArchiveController();
-//    }
+    if(is_home()) {
+        echo "<pre>";
+        print_r('aaa: home');
+        echo "</pre>";
+    } elseif( is_single() ) {
+        echo "<pre>";
+        print_r('aaa: single');
+        echo "</pre>";
+    } elseif( is_page() ) {
+        echo "<pre>";
+        print_r('page');
+        echo "</pre>";
+    } elseif(is_tag() || is_archive() || is_search()) {
+        // -- Include taxonomy, category, tag --
+        echo "<pre>";
+        print_r('tag - archive - search');
+        echo "</pre>";
+    }
 //
 //    // -- Start wordpress process --
 //    if ($controller) {
@@ -183,6 +194,19 @@ function my_template_include( $original_template )
         //$template_file = str_replace('404', 'single', $template_file);
         return 'single';
     });
+
+    $router->basic('/bai-viet/(:slug)-post(:num).html', function($slug, $id){
+        $my_args = array(
+            'post_type' => 'bai-viet',
+            'p' => $id
+        );
+
+        global $wp_query;
+        $wp_query = new WP_Query($my_args);
+
+        return 'single';
+    });
+
 
     $router->basic('/(:slug)-post(:num).html', function($slug, $id){
 
@@ -234,10 +258,11 @@ function my_template_include( $original_template )
 //    echo "</pre>";
 //    exit();
 
-//    echo "<pre>";
-//    print_r($original_template);
-//    echo "</pre>";
-//    exit();
+//        echo "<pre>";
+//        print_r($original_template);
+//        echo "</pre>";
+//        exit();
+
 
     return $original_template;
 }
@@ -255,19 +280,18 @@ function db_get_template_part( $slug, $name = null )
         return;
     }
 
-    $page = 'home';
-    $str_func = "dbf_action_for_content_" .$page;
+    $page = 'none';
     if(is_home()) {
         $page = 'home';
     } elseif( is_single() ) {
         $page = 'single';
     } elseif( is_page() ) {
-        get_template_part($slug, 'page');
         $page = 'page';
     } elseif(is_tag() || is_archive() || is_search()) {
         // -- Include taxonomy, category, tag --
         $page = 'category';
     }
+    $str_func = "dbf_action_for_content_" .$page;
 
     if(function_exists($str_func))
     {
@@ -275,25 +299,4 @@ function db_get_template_part( $slug, $name = null )
         $str_func();
     }
     get_template_part($slug, $page);
-}
-
-function dbf_action_for_content_home()
-{
-//    echo "<pre>";
-//    print_r('dbf_action_for_content_home');
-//    echo "</pre>";
-    $my_args = array(
-        'post_type' => 'bai-viet',
-        'paged' => get_query_var('paged')
-    );
-
-    echo "<pre>";
-    print_r($my_args);
-    echo "</pre>";
-    exit();
-
-    global $wp_query;
-    $wp_query = new WP_Query($my_args);
-
-
 }

@@ -207,7 +207,7 @@ if( !function_exists( 'db_get_template' ) ) {
      * @return void
      * @since 1.0.0
      */
-    function db_get_template( $path, $var = null, $return = false )
+    function db_load_path_html( $path, $var = null, $return = true )
     {
         $located = get_theme_root().'/'.get_template().'/'.$path;
         if ( $var && is_array( $var ) )
@@ -235,20 +235,21 @@ if( !function_exists( 'db_load_templates_html' ) )
      * @return void
      * @since 1.0.0
      */
-    function db_load_templates_html( $path, $var = null, $return = false )
+    function db_load_templates_html( $path, $var = null, $return = true )
     {
-        $located = __TEMPLATES_HTML_PATH.'/'.$path;
-        if ( $var && is_array( $var ) )
-            extract( $var );
-
-        if( $return )
-        { ob_start(); }
-
-        // include file located
-        include( $located );
-
-        if( $return )
-        { return ob_get_clean(); }
+        $located = __TEMPLATES_HTML_PATH.'/includes/templates/'.$path;
+        return db_load_path_html($located, $var, $return);
+//        if ( $var && is_array( $var ) )
+//            extract( $var );
+//
+//        if( $return )
+//        { ob_start(); }
+//
+//        // include file located
+//        include( $located );
+//
+//        if( $return )
+//        { return ob_get_clean(); }
     }
 }
 
